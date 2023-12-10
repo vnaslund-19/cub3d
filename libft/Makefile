@@ -3,7 +3,6 @@ NAME = libft.a
 SOURCES = \
 	ft_strlen.c ft_bzero.c ft_calloc.c \
 	get_next_line.c get_next_line_utils.c \
-	ft_printf.c format.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:46:38 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/10 14:55:53 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:12:52 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_map_check(t_data *data, char **map)
 	data->cols = len;
 	while (len--)
 	{
-		if (map[0][len] != WALL || map[i - 1][len] != WALL)
+		if (!map[0] || map[0][len] != WALL || map[i - 1][len] != WALL)
 			exit_handler("Map error: missing wall", data);
 	}
 	ft_playable_check(data, map);
@@ -42,12 +42,12 @@ void	ft_map_check(t_data *data, char **map)
 void	ft_playable_check(t_data *data, char **map)
 {
 	data->players = 0;
-	map_config_check(data, map);
+	player_config_check(data, map);
 	if (data->players != 1)
 		exit_handler("Map error: exactly 1 player position needed", data);
 }
 
-void	map_config_check(t_data *data, char **map)
+void	player_config_check(t_data *data, char **map)
 {
 	int		i;
 	int		j;
@@ -64,6 +64,7 @@ void	map_config_check(t_data *data, char **map)
 				data->players++;
 				data->p_position[0] = j;
 				data->p_position[1] = i;
+				data->direction = map[i][j];
 			}
 			else if (map[i][j] != EMPTY && map[i][j] != ' ' &&
 				map[i][j] != WALL && map[i][j] != '\n')

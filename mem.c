@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   mem.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/12 18:31:45 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/10 16:04:03 by vnaslund         ###   ########.fr       */
+/*   Created: 2023/11/05 14:34:22 by vnaslund          #+#    #+#             */
+/*   Updated: 2023/12/10 16:00:04 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-size_t	ft_strlen(const char *str)
+void	exit_handler(char *msg, t_data *data)
 {
-	size_t	n;
-
-	if (!str)
-		return (0);
-	n = 0;
-	while (str[n] != '\0')
-	{
-		n++;
-	}
-	return (n);
+	if (data->allocated_map)
+		ft_free_matrix(data, (void **)data->map);
+	free(data);
+	printf("Error\n%s\n", msg);
+	exit(1);
 }
+
+void	ft_free_matrix(t_data *data, void **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->rows && matrix[i])
+		free(matrix[i++]);
+	free(matrix);
+}
+
