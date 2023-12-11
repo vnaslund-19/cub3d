@@ -6,19 +6,19 @@
 #    By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 16:46:17 by vnaslund          #+#    #+#              #
-#    Updated: 2023/12/10 16:00:43 by vnaslund         ###   ########.fr        #
+#    Updated: 2023/12/11 16:09:51 by vnaslund         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3d
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 LIBMLX  = ./MLX42
 LIBFT   = ./libft
 
 HEADERS = -I ./includes -I ${LIBMLX}/include -I ${LIBFT}
 LIBGL   = -lglfw -L"/Users/vnaslund/.brew/opt/glfw/lib"
 LIBS    = ${LIBGL} ${LIBFT}/libft.a ${LIBMLX}/build/libmlx42.a
-SRCS    = main.c read_map.c playable.c mem.c
+SRCS    = main.c read_file.c playable.c mem.c
 OBJS    = ${SRCS:.c=.o}
 
 all: libmlx libft ${NAME}

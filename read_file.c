@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:58:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/10 14:58:15 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:45:30 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_read_map(t_data *data, char **argv)
+void	ft_read_file(t_data *data, char **argv)
 {
 	int		fd;
 	int		i;
@@ -22,18 +22,22 @@ void	ft_read_map(t_data *data, char **argv)
 	if (fd < 0)
 		exit_handler("Map error: open error", data);
 	line_count = ft_allocate_lines(data, argv);
-	data->allocated_map = true;
+	data->allocated_file = true;
 	i = 0;
 	while (line_count--)
 	{
-		data->map[i] = get_next_line(fd);
-		if (data->map[i] == NULL)
+		data->file[i] = get_next_line(fd);
+		if (data->file[i] == NULL)
 			exit_handler("Map error: gnl error", data);
 		i++;
 	}
-	data->map[i] = NULL;
+	data->file[i] = NULL;
 	get_next_line(-1);
-	ft_map_check(data, data->map);
+	data->map = NULL;
+	ft_file_check(data, data->file, 0);
+	if (!data->map)
+		exit_handler("map not found", data);
+	ft_playable_check(data, data->map);
 }
 
 int	ft_allocate_lines(t_data *data, char **argv)
@@ -58,8 +62,8 @@ int	ft_allocate_lines(t_data *data, char **argv)
 		line_count++;
 	}
 	close(fd);
-	data->rows = line_count;
-	data->map = (char **)malloc((line_count + 1) * sizeof(char *));
+	data->lines = line_count;
+	data->file = (char **)malloc((line_count + 1) * sizeof(char *));
 	if (!data->map)
 		exit_handler("Malloc error", data);
 	return (line_count);
