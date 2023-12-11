@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/11 16:04:15 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/11 18:07:20 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	player_config_check(t_data *data, char **map);
 
 void	init_explore(t_data *data, int ***visited);
 void	explore(t_data *data, int x, int y, int **visited);
+
+void	debug_print_visited(int **visited, int rows, int cols);
 
 void	exit_handler(char *msg, t_data *data);
 void	ft_free_array(void **matrix);
