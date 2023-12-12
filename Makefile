@@ -6,7 +6,7 @@
 #    By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 16:46:17 by vnaslund          #+#    #+#              #
-#    Updated: 2023/12/11 16:09:51 by vnaslund         ###   ########.fr        #
+#    Updated: 2023/12/12 14:01:34 by vnaslund         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBFT   = ./libft
 HEADERS = -I ./includes -I ${LIBMLX}/include -I ${LIBFT}
 LIBGL   = -lglfw -L"/Users/vnaslund/.brew/opt/glfw/lib"
 LIBS    = ${LIBGL} ${LIBFT}/libft.a ${LIBMLX}/build/libmlx42.a
-SRCS    = main.c read_file.c playable.c mem.c
+SRCS    = main.c read_file.c playable.c fill_map.c mem.c explore.c
 OBJS    = ${SRCS:.c=.o}
 
 all: libmlx libft ${NAME}

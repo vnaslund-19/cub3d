@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/11 18:07:20 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:03:21 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ void	ft_read_file(t_data *data, char **argv);
 int		ft_allocate_lines(t_data *data, char **argv);
 void	ft_file_check(t_data *data, char **file, int i);
 void	ft_playable_check(t_data *data, char **map);
-int		is_first_line_of_file(char *str);
+int		is_first_line_of_map(char *str);
 void	player_config_check(t_data *data, char **map);
+
+void	add_spaces(t_data *data, char **map, int max_cols);
+void	ft_fill_map(t_data *data);
 
 void	init_explore(t_data *data, int ***visited);
 void	explore(t_data *data, int x, int y, int **visited);

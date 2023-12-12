@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:58:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/11 16:45:30 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:05:55 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,74 @@ int	ft_allocate_lines(t_data *data, char **argv)
 	if (!data->map)
 		exit_handler("Malloc error", data);
 	return (line_count);
+}
+
+int	is_first_line_of_map(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(str[i] == ' ' || str[i] == '1'
+				|| str[i] == '0' || str[i] == '\n'))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	ft_file_check(t_data *data, char **file, int i)
+{
+	char	**nums;
+
+	if (!file[i])
+		return ;
+	else if (!ft_strncmp("\n", file[i], 2))
+		ft_file_check(data, file, i + 1);
+	else if (!ft_strncmp(file[i], "F ", 2))
+	{
+		nums = ft_split(file[i] + 2, ',');
+		data->rfloor = ft_atoi(nums[0]);
+		data->gfloor = ft_atoi(nums[1]);
+		data->bfloor = ft_atoi(nums[2]);
+		ft_free_array((void **)nums);
+		ft_file_check(data, file, i + 1);
+	}
+	else if (!ft_strncmp(file[i], "C ", 2))
+	{
+		nums = ft_split(file[i] + 2, ',');
+		data->rceil = ft_atoi(nums[0]);
+		data->gceil = ft_atoi(nums[1]);
+		data->bceil = ft_atoi(nums[2]);
+		ft_free_array((void **)nums);
+		ft_file_check(data, file, i + 1);
+	}
+	else if (!ft_strncmp(file[i], "NO ", 3))
+	{
+		data->no_path = ft_substr(file[i], 3, ft_strlen(file[i]) - 4);
+		ft_file_check(data, file, i + 1);
+	}
+	else if (!ft_strncmp(file[i], "SO ", 3))
+	{
+		data->so_path = ft_substr(file[i], 3, ft_strlen(file[i]) - 4);
+		ft_file_check(data, file, i + 1);
+	}
+	else if (!ft_strncmp(file[i], "WE ", 3))
+	{
+		data->we_path = ft_substr(file[i], 3, ft_strlen(file[i]) - 4);
+		ft_file_check(data, file, i + 1);
+	}
+	else if (!ft_strncmp(file[i], "EA ", 3))
+	{
+		data->ea_path = ft_substr(file[i], 3, ft_strlen(file[i]) - 4);
+		ft_file_check(data, file, i + 1);
+	}
+	else if (is_first_line_of_map(file[i]))
+	{
+		data->first_line_of_map = i;
+		ft_fill_map(data);
+	}
+	else
+		exit_handler("Found invalid line while parsing", data);
 }
