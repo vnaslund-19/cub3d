@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 14:34:22 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 13:35:08 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/12 16:02:40 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	exit_handler(char *msg, t_data *data)
 		ft_free_array((void **)data->map);
 	if (data->allocated_file)
 		ft_free_array((void **)data->file);
-	if (data->no_path) // initialize all to NULL in data_init
+	if (data->no_path)
 		free(data->no_path);
 	if (data->so_path)
 		free(data->so_path);

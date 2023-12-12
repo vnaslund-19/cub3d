@@ -6,11 +6,19 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 14:35:02 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/12 16:02:09 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	init_data(t_data *data)
+{
+	data->no_path = NULL;
+	data->so_path = NULL;
+	data->we_path = NULL;
+	data->ea_path = NULL;
+}
 
 int	main(int argc, char **argv)
 {
@@ -21,6 +29,7 @@ int	main(int argc, char **argv)
 	data = malloc(sizeof(t_data));
 	if (!data)
 		exit_handler("Malloc error", data);
+	init_data(data);
 	ft_read_file(data, argv);
 
 	int	i = 0;

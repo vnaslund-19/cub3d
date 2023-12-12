@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 14:03:21 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:59:18 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,28 @@ typedef struct s_data
 
 void	ft_read_file(t_data *data, char **argv);
 int		ft_allocate_lines(t_data *data, char **argv);
+
+// Find info for floor & ceiling color, & NO, SO, WE & EA textures
 void	ft_file_check(t_data *data, char **file, int i);
-void	ft_playable_check(t_data *data, char **map);
 int		is_first_line_of_map(char *str);
+
+void	ft_playable_check(t_data *data, char **map);
+
+// Check that there is only one player character and no invalid characters
 void	player_config_check(t_data *data, char **map);
 
-void	add_spaces(t_data *data, char **map, int max_cols);
+// Fill map with spaces to make it a rectangle to prepare for DFS algo
 void	ft_fill_map(t_data *data);
+void	add_spaces(t_data *data, char **map, int max_cols);
 
+// Depth-First Search algorithm 
+// Checks if all possible paths for the player are valid
 void	init_explore(t_data *data, int ***visited);
 void	explore(t_data *data, int x, int y, int **visited);
 
 void	debug_print_visited(int **visited, int rows, int cols);
 
+// Exit and memory handling
 void	exit_handler(char *msg, t_data *data);
 void	ft_free_array(void **matrix);
 

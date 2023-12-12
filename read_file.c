@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:58:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 14:05:55 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/12 16:19:54 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	is_first_line_of_map(char *str)
 	return (1);
 }
 
-void	ft_file_check(t_data *data, char **file, int i)
+void	ft_file_check(t_data *data, char **file, int i) // Divide into smaller functions & protect mallocs (ft_split & ft_substr)
 {
 	char	**nums;
 
