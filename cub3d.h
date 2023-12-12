@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 15:59:18 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/12 16:49:45 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,13 @@ typedef struct s_data
 void	ft_read_file(t_data *data, char **argv);
 int		ft_allocate_lines(t_data *data, char **argv);
 
+// Recursively check each line to:
 // Find info for floor & ceiling color, & NO, SO, WE & EA textures
+// Find the first line of the map
 void	ft_file_check(t_data *data, char **file, int i);
+int		find_floor_or_ceil(t_data *data, char **file, int i);
+int		find_no_or_so(t_data *data, char **file, int i);
+int		find_we_or_ea(t_data *data, char **file, int i);
 int		is_first_line_of_map(char *str);
 
 void	ft_playable_check(t_data *data, char **map);
