@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:46:38 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 14:05:19 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:41:52 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	player_config_check(t_data *data, char **map)
 				data->players++;
 				data->p_position[0] = j;
 				data->p_position[1] = i;
-				data->direction = map[i][j];
+				data->player_direction = map[i][j];
 			}
 			else if (map[i][j] != EMPTY && map[i][j] != ' ' &&
 				map[i][j] != WALL && map[i][j] != '\n')

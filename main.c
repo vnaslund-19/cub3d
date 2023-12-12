@@ -6,11 +6,27 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 16:02:09 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:40:28 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	revise_data(t_data *data)
+{
+	if (data->rfloor > 255 || data->rfloor < 0)
+		exit_handler("Floor color error", data);
+	else if (data->gfloor > 255 || data->gfloor < 0)
+		exit_handler("Floor color error", data);
+	else if (data->bfloor > 255 || data->bfloor < 0)
+		exit_handler("Floor color error", data);
+	else if (data->rceil > 255 || data->rceil < 0)
+		exit_handler("Ceiling color error", data);
+	else if (data->gceil > 255 || data->gceil < 0)
+		exit_handler("Ceiling color error", data);
+	else if (data->bceil > 255 || data->bceil < 0)
+		exit_handler("Ceiling color error", data);
+}
 
 void	init_data(t_data *data)
 {
@@ -31,6 +47,7 @@ int	main(int argc, char **argv)
 		exit_handler("Malloc error", data);
 	init_data(data);
 	ft_read_file(data, argv);
+	revise_data(data);
 
 	int	i = 0;
 	printf("\nMap:\n");

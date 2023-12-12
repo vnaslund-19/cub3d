@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:01:03 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 14:41:04 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:43:59 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	add_spaces(t_data *data, char **map, int max_cols)
 	int	i;
 	int	len;
 
-	printf("\n%d\n", data->max_cols);
 	i = 0;
 	while (map[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 16:49:45 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:41:46 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_data
 	int		max_cols;
 	int		p_position[2];
 	int		players;
-	char	direction;
+	char	player_direction;
 	bool	allocated_map;
 	bool	allocated_file;
 	int		rceil;
