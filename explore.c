@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:00:32 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 13:56:47 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:00:09 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ void	init_explore(t_data *data, int ***visited)
 	if (!*visited)
 		exit_handler("Malloc error", data);
 	i = 0;
-	while (i < (data->rows + 1))
+	while (i < (data->rows))
 	{
 		(*visited)[i++] = (int *)ft_calloc(data->max_cols, sizeof(int));
 		if (!(*visited)[i - 1])
 			exit_handler("Malloc error", data);
 	}
-	(*visited)[data->rows] = NULL;
 }
 
 void	explore(t_data *data, int x, int y, int **visited)
@@ -44,20 +43,4 @@ void	explore(t_data *data, int x, int y, int **visited)
 	explore(data, x, (y + 1), visited);
 	explore(data, (x + 1), y, visited);
 	explore(data, (x - 1), y, visited);
-}
-
-void	debug_print_visited(int **visited, int rows, int cols)
-{
-	if (!visited)
-	{
-		printf("Visited array is NULL.\n");
-		return ;
-	}
-	printf("Visited Array:\n");
-	for (int i = 0; i < rows; i++)
-	{
-    	for (int j = 0; j < cols; j++)
-			printf("%d", visited[i][j]);
-		printf("\n");
-	}
 }

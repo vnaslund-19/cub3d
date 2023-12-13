@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 17:41:46 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:34:20 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		find_we_or_ea(t_data *data, char **file, int i);
 int		is_first_line_of_map(char *str);
 
 void	ft_playable_check(t_data *data, char **map);
+void	revise_data(t_data *data);
 
 // Check that there is only one player character and no invalid characters
 void	player_config_check(t_data *data, char **map);
@@ -72,10 +73,13 @@ void	add_spaces(t_data *data, char **map, int max_cols);
 void	init_explore(t_data *data, int ***visited);
 void	explore(t_data *data, int x, int y, int **visited);
 
+// Debugging
+void	debug_print_mapinfo(t_data *data);
 void	debug_print_visited(int **visited, int rows, int cols);
 
 // Exit and memory handling
 void	exit_handler(char *msg, t_data *data);
 void	ft_free_array(void **matrix);
+void	ft_end_game(t_data *data);
 
 #endif

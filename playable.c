@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:46:38 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 17:41:52 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:54:29 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_playable_check(t_data *data, char **map)
 	explore(data, data->p_position[0], data->p_position[1], visited);
 	debug_print_visited(visited, data->rows, data->max_cols);
 	ft_free_array((void **)visited);
+	revise_data(data);
 }
 
 void	player_config_check(t_data *data, char **map)
@@ -50,4 +51,20 @@ void	player_config_check(t_data *data, char **map)
 				exit_handler("Map error: Invalid character found", data);
 		}
 	}
+}
+
+void	revise_data(t_data *data)
+{
+	if (data->rfloor > 255 || data->rfloor < 0)
+		exit_handler("Floor color error", data);
+	else if (data->gfloor > 255 || data->gfloor < 0)
+		exit_handler("Floor color error", data);
+	else if (data->bfloor > 255 || data->bfloor < 0)
+		exit_handler("Floor color error", data);
+	else if (data->rceil > 255 || data->rceil < 0)
+		exit_handler("Ceiling color error", data);
+	else if (data->gceil > 255 || data->gceil < 0)
+		exit_handler("Ceiling color error", data);
+	else if (data->bceil > 255 || data->bceil < 0)
+		exit_handler("Ceiling color error", data);
 }
