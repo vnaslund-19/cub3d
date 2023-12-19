@@ -6,11 +6,11 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:00:32 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/13 18:00:09 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:10:22 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	init_explore(t_data *data, int ***visited)
 {

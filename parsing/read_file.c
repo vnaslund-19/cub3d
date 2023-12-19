@@ -6,11 +6,11 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:58:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 16:47:18 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:10:19 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	ft_read_file(t_data *data, char **argv)
 {

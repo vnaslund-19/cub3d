@@ -6,11 +6,11 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:46:38 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/13 17:54:29 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:10:18 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	ft_playable_check(t_data *data, char **map)
 {

@@ -6,11 +6,11 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:25:31 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/12 16:48:02 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:10:21 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	ft_file_check(t_data *data, char **file, int i)
 {

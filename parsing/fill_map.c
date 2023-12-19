@@ -6,11 +6,11 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:01:03 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/13 17:53:35 by vnaslund         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:10:20 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	*ft_realloc(void *ptr, size_t size)
 {
