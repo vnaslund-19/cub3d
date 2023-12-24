@@ -64,7 +64,7 @@ int	ft_allocate_lines(t_data *data, char **argv)
 	close(fd);
 	data->lines = line_count;
 	data->file = (char **)malloc((line_count + 1) * sizeof(char *));
-	if (!data->map)
+	if (!data->file)
 		exit_handler("Malloc error", data);
 	return (line_count);
 }

@@ -14,12 +14,7 @@
 
 void	ft_end_game(t_data *data)
 {
-	int	i;
-
-	i = 0;
-	while (i < data->first_line_of_map)
-		free(data->file[i++]);
-	free(data->file);
+	ft_free_array((void **)data->file);
 	ft_free_array((void **)data->map);
 	free(data->no_path);
 	free(data->so_path);

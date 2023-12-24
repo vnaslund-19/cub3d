@@ -14,19 +14,11 @@
 
 void	exit_handler(char *msg, t_data *data)
 {
-	int	i;
-
 	printf("Error\n%s\n", msg);
-	i = 0;
-	if (data->allocated_map)
-	{
-		while (i < data->first_line_of_map)
-			free(data->file[i++]);
-		free(data->file);
-		ft_free_array((void **)data->map);
-	}
-	else if (data->allocated_file)
+	if (data->allocated_file)
 		ft_free_array((void **)data->file);
+	if (data->allocated_map)
+		ft_free_array((void **)data->map);
 	if (data->no_path)
 		free(data->no_path);
 	if (data->so_path)

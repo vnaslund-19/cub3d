@@ -70,9 +70,8 @@ void	ft_fill_map(t_data *data)
 	data->allocated_map = true;
 	j = 0;
 	while (data->file[i])
-		data->map[j++] = data->file[i++];
+		data->map[j++] = ft_strdup(data->file[i++]);
 	data->map[j] = NULL;
-	data->allocated_file = false;
 	data->rows = j;
 	max_len = 0;
 	i = -1;
