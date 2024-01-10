@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:46:38 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/19 14:10:18 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:16:03 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_playable_check(t_data *data, char **map)
 		exit_handler("Map error: exactly 1 player position needed", data);
 	init_explore(data, &visited);
 	explore(data, data->p_position[0], data->p_position[1], visited);
-	debug_print_visited(visited, data->rows, data->max_cols);
+	//debug_print_visited(visited, data->rows, data->max_cols);
 	ft_free_array((void **)visited);
 	revise_data(data);
 }

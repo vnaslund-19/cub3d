@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/13 16:34:20 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:15:01 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,8 @@ void	debug_print_visited(int **visited, int rows, int cols);
 void	exit_handler(char *msg, t_data *data);
 void	ft_free_array(void **matrix);
 void	ft_end_game(t_data *data);
+
+// MLX
+void	init_window(t_data *data);
 
 #endif

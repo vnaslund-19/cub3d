@@ -6,7 +6,7 @@
 #    By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 16:46:17 by vnaslund          #+#    #+#              #
-#    Updated: 2024/01/10 15:48:42 by vnaslund         ###   ########.fr        #
+#    Updated: 2024/01/10 16:14:08 by vnaslund         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ LIBS    = ${LIBGL} $(LIBFT_A) ${LIBMLX}/build/libmlx42.a
 
 SRCS    = main.c parsing/read_file.c parsing/playable.c parsing/file_check.c \
           parsing/fill_map.c parsing/explore.c \
-          memory_handling/exit_handler.c  memory_handling/end_game.c debug.c
+          memory_handling/exit_handler.c  memory_handling/end_game.c debug.c \
+		  game/init_game.c
 
 OBJ_DIR = obj/
 OBJS    = $(SRCS:%.c=$(OBJ_DIR)%.o)
