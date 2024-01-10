@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:00:32 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/19 14:10:22 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:06:42 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_explore(t_data *data, int ***visited)
 		if (!(*visited)[i - 1])
 			exit_handler("Malloc error", data);
 	}
+	(*visited)[i] = NULL;
 }
 
 void	explore(t_data *data, int x, int y, int **visited)

@@ -6,30 +6,30 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:01:03 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/19 14:10:20 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:15:19 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	*ft_realloc(void *ptr, size_t size)
+void	*ft_realloc(void *ptr, size_t new_size, size_t og_size)
 {
 	void	*new;
 
-	if (size == 0)
+	if (new_size == 0)
 	{
 		free(ptr);
 		return (NULL);
 	}
 	if (!ptr)
-		return (malloc(size));
-	new = malloc(size);
+		return (malloc(new_size));
+	new = malloc(new_size);
 	if (!new)
 	{
 		free(ptr);
 		return (NULL);
 	}
-	ft_memcpy(new, ptr, size);
+	ft_memcpy(new, ptr, og_size);
 	free(ptr);
 	return (new);
 }
@@ -45,7 +45,7 @@ void	add_spaces(t_data *data, char **map, int max_cols)
 		len = ft_strlen(map[i]) - 1;
 		if (len < max_cols)
 		{
-			map[i] = realloc(map[i], max_cols + 2);
+			map[i] = ft_realloc(map[i], max_cols + 2, len);
 			if (!map[i])
 				exit_handler("realloc error", data);
 			while (len < max_cols)
