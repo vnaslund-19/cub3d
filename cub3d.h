@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/10 18:04:16 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:22:18 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ void	ft_end_game(t_game *game);
 
 // MLX
 void	init_window(t_game *game);
+void	load_textures(t_game *game);
 
 #endif
