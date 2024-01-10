@@ -6,31 +6,31 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:25:31 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/19 14:10:21 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:57:18 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_file_check(t_data *data, char **file, int i)
+void	ft_file_check(t_game *game, char **file, int i)
 {
 	if (!file[i])
 		return ;
 	else if (!ft_strncmp("\n", file[i], 2))
-		ft_file_check(data, file, i + 1);
-	else if (find_floor_or_ceil(data, file, i))
-		ft_file_check(data, file, i + 1);
-	else if (find_no_or_so(data, file, i))
-		ft_file_check(data, file, i + 1);
-	else if (find_we_or_ea(data, file, i))
-		ft_file_check(data, file, i + 1);
+		ft_file_check(game, file, i + 1);
+	else if (find_floor_or_ceil(game->data, file, i))
+		ft_file_check(game, file, i + 1);
+	else if (find_no_or_so(game, file, i))
+		ft_file_check(game, file, i + 1);
+	else if (find_we_or_ea(game, file, i))
+		ft_file_check(game, file, i + 1);
 	else if (is_first_line_of_map(file[i]))
 	{
-		data->first_line_of_map = i;
-		ft_fill_map(data);
+		game->data->first_line_of_map = i;
+		ft_fill_map(game);
 	}
 	else
-		exit_handler("Found invalid line while parsing", data);
+		exit_handler("Found invalid line while parsing", game);
 }
 
 int	find_floor_or_ceil(t_data *data, char **file, int i)
@@ -58,40 +58,39 @@ int	find_floor_or_ceil(t_data *data, char **file, int i)
 	return (0);
 }
 
-int	find_no_or_so(t_data *data, char **file, int i)
+int	find_no_or_so(t_game *game, char **file, int i)
 {
 	if (!ft_strncmp(file[i], "NO ", 3))
 	{
-		data->no_path = ft_substr(file[i], 3, ft_strlen(file[i]) - 4);
-		if (!data->no_path)
-			exit_handler("ft_substr error", data);
+		game->data->no_path = ft_substr(file[i], 3, ft_strlen(file[i]) - 4);
+		if (!game->data->no_path)
+			exit_handler("ft_substr error", game);
 		return (1);
 	}
 	else if (!ft_strncmp(file[i], "SO ", 3))
 	{
-		data->so_path = ft_substr(file[i], 3, ft_strlen(file[i]) - 4);
-		if (!data->so_path)
-			exit_handler("ft_substr error", data);
+		game->data->so_path = ft_substr(file[i], 3, ft_strlen(file[i]) - 4);
+		if (!game->data->so_path)
+			exit_handler("ft_substr error", game);
 		return (1);
 	}
 	return (0);
 }
 
-int	find_we_or_ea(t_data *data, char **file, int i)
+int	find_we_or_ea(t_game *game, char **file, int i)
 {
 	if (!ft_strncmp(file[i], "WE ", 3))
 	{
-		data->we_path = ft_substr(file[i], 3, ft_strlen(file[i]) - 4);
-		if (!data->we_path)
-			exit_handler("ft_substr error", data);
+		game->data->we_path = ft_substr(file[i], 3, ft_strlen(file[i]) - 4);
+		if (!game->data->we_path)
+			exit_handler("ft_substr error", game);
 		return (1);
-		ft_file_check(data, file, i + 1);
 	}
 	else if (!ft_strncmp(file[i], "EA ", 3))
 	{
-		data->ea_path = ft_substr(file[i], 3, ft_strlen(file[i]) - 4);
-		if (!data->ea_path)
-			exit_handler("ft_substr error", data);
+		game->data->ea_path = ft_substr(file[i], 3, ft_strlen(file[i]) - 4);
+		if (!game->data->ea_path)
+			exit_handler("ft_substr error", game);
 		return (1);
 	}
 	return (0);

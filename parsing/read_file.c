@@ -6,13 +6,13 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:58:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/19 14:10:19 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:57:47 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_read_file(t_data *data, char **argv)
+void	ft_read_file(t_game *game, char **argv)
 {
 	int		fd;
 	int		i;
@@ -20,27 +20,27 @@ void	ft_read_file(t_data *data, char **argv)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		exit_handler("Map error: open error", data);
-	line_count = ft_allocate_lines(data, argv);
-	data->allocated_file = true;
+		exit_handler("Map error: open error", game);
+	line_count = ft_allocate_lines(game, argv);
+	game->data->allocated_file = true;
 	i = 0;
 	while (line_count--)
 	{
-		data->file[i] = get_next_line(fd);
-		if (data->file[i] == NULL)
-			exit_handler("Map error: gnl error", data);
+		game->data->file[i] = get_next_line(fd);
+		if (game->data->file[i] == NULL)
+			exit_handler("Map error: gnl error", game);
 		i++;
 	}
-	data->file[i] = NULL;
+	game->data->file[i] = NULL;
 	get_next_line(-1);
-	data->map = NULL;
-	ft_file_check(data, data->file, 0);
-	if (!data->map)
-		exit_handler("map not found", data);
-	ft_playable_check(data, data->map);
+	game->data->map = NULL;
+	ft_file_check(game, game->data->file, 0);
+	if (!game->data->map)
+		exit_handler("map not found", game);
+	ft_playable_check(game, game->data->map);
 }
 
-int	ft_allocate_lines(t_data *data, char **argv)
+int	ft_allocate_lines(t_game *game, char **argv)
 {
 	int		fd;
 	int		line_count;
@@ -48,7 +48,7 @@ int	ft_allocate_lines(t_data *data, char **argv)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		exit_handler("Map error: open error", data);
+		exit_handler("Map error: open error", game);
 	line_count = 0;
 	while (1)
 	{
@@ -62,9 +62,9 @@ int	ft_allocate_lines(t_data *data, char **argv)
 		line_count++;
 	}
 	close(fd);
-	data->lines = line_count;
-	data->file = (char **)malloc((line_count + 1) * sizeof(char *));
-	if (!data->file)
-		exit_handler("Malloc error", data);
+	game->data->lines = line_count;
+	game->data->file = (char **)malloc((line_count + 1) * sizeof(char *));
+	if (!game->data->file)
+		exit_handler("Malloc error", game);
 	return (line_count);
 }
