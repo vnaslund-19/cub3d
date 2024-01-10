@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/10 16:15:01 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:24:13 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 
 # define EMPTY '0'
 # define WALL '1'
+
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+# define MIN_WIDTH 500
+# define MIN_HEIGHT 500
 
 typedef struct s_data
 {

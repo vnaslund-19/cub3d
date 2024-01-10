@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:05:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/10 16:13:41 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:34:27 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 void	init_window(t_data *data)
 {
 	mlx_t		*mlx;
-	mlx_image_t	*img;
 
-	mlx = mlx_init(1920, 1080, "CUB3D", true);
+	mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "CUB3D", true);
 	if (!mlx)
 		exit_handler("mlx_init error", data);
-	img = mlx_new_image(mlx, 700, 700);
+	mlx_set_window_limit(mlx, MIN_WIDTH, MIN_HEIGHT, WIN_WIDTH, WIN_HEIGHT);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 }
