@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/10 18:22:18 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/11 14:19:03 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_textures	t_textures;
 
 typedef struct s_game
 {
+	mlx_t		*mlx;
 	t_textures	*textures;
 	t_data		*data;
 }				t_game;
@@ -107,5 +108,14 @@ void	ft_end_game(t_game *game);
 // MLX
 void	init_window(t_game *game);
 void	load_textures(t_game *game);
+
+void	key_hook(mlx_key_data_t keydata, void *param);
+void	loop_hook(void	*param);
+void	move_forward(t_game *game);
+void	move_backward(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+void	rotate_left(t_game *game);
+void	rotate_right(t_game *game);
 
 #endif

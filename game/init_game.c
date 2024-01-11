@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:05:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/10 18:23:12 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/11 14:29:22 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 void	init_window(t_game *game)
 {
-	mlx_t		*mlx;
-
-	mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3d", true);
-	if (!mlx)
-		exit_handler("mlx_init error", game);
-	mlx_set_window_limit(mlx, MIN_WIDTH, MIN_HEIGHT, WIN_WIDTH, WIN_HEIGHT);
 	//load_textures(game);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	game->mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3d", true);
+	if (!game->mlx)
+		exit_handler("mlx_init error", game);
+	mlx_set_window_limit(game->mlx, MIN_WIDTH, MIN_HEIGHT,
+		WIN_WIDTH, WIN_HEIGHT);
+	mlx_key_hook(game->mlx, key_hook, game);
+	mlx_loop_hook(game->mlx, loop_hook, game);
+	mlx_loop(game->mlx);
+	mlx_terminate(game->mlx);
 }
 
 void	load_textures(t_game *game)
