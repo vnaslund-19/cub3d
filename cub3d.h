@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/13 16:34:20 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:29:08 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,24 @@
 # include "MLX42/include/MLX42/MLX42.h"
 # include <stdbool.h>
 # include <fcntl.h>
+# include <math.h>
 
 # define EMPTY '0'
 # define WALL '1'
+# define WIDTH 1000
+# define HEIGHT 800
+# define FOV (M_PI / 2)
+
+typedef struct s_player {
+	double		x;
+	double		y;
+	double		view_angle;
+	double		x_viewdir; // vector which depend on view_angle
+	double		y_viewdir; // vector which depend on view_angle
+	double		ray_angle;
+	double 		x_raydir;
+	double 		y_raydir;
+}				t_player;
 
 typedef struct s_data
 {
@@ -44,6 +59,12 @@ typedef struct s_data
 	char	*we_path;
 	char	*ea_path;
 	int		first_line_of_map;
+	//int			mapx; // in which coordinates is playerse current position
+	//int			mapy;
+	double		rx;
+	double		ry;
+	bool		hit;
+	t_player	pos;
 }			t_data;
 
 void	ft_read_file(t_data *data, char **argv);
@@ -81,5 +102,9 @@ void	debug_print_visited(int **visited, int rows, int cols);
 void	exit_handler(char *msg, t_data *data);
 void	ft_free_array(void **matrix);
 void	ft_end_game(t_data *data);
+
+
+//raycast
+void	init_player(t_data *data);
 
 #endif

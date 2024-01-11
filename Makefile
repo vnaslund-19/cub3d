@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+         #
+#    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 16:46:17 by vnaslund          #+#    #+#              #
-#    Updated: 2023/12/19 14:11:03 by vnaslund         ###   ########.fr        #
+#    Updated: 2024/01/11 10:40:35 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,13 @@ LIBMLX  = ./MLX42
 LIBFT   = ./libft
 
 HEADERS = -I ./includes -I ${LIBMLX}/include -I ${LIBFT}
-LIBGL   = -lglfw -L"/Users/vnaslund/.brew/opt/glfw/lib"
+LIBGL   = -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib"
 LIBS    = ${LIBGL} ${LIBFT}/libft.a ${LIBMLX}/build/libmlx42.a
 
 SRCS    = main.c parsing/read_file.c parsing/playable.c parsing/file_check.c \
 		  parsing/fill_map.c parsing/explore.c \
-		  memory_handling/exit_handler.c  memory_handling/end_game.c debug.c
+		  memory_handling/exit_handler.c  memory_handling/end_game.c debug.c \
+		  raycasting/raycasting.c
 
 OBJS    = ${SRCS:.c=.o}
 

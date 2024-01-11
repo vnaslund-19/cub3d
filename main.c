@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/13 16:44:08 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:20:30 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char **argv)
 	init_data(data);
 	ft_read_file(data, argv);
 	debug_print_mapinfo(data);
+	init_player(data);
 	ft_end_game(data);
 	return (0);
 }

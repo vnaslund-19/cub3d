@@ -1,7 +1,7 @@
-/Users/vnaslund/Desktop/so_long/MLX42/build/CMakeFiles/mlx42.dir
-/Users/vnaslund/Desktop/so_long/MLX42/build/CMakeFiles/edit_cache.dir
-/Users/vnaslund/Desktop/so_long/MLX42/build/CMakeFiles/rebuild_cache.dir
-/Users/vnaslund/Desktop/so_long/MLX42/build/CMakeFiles/list_install_components.dir
-/Users/vnaslund/Desktop/so_long/MLX42/build/CMakeFiles/install.dir
-/Users/vnaslund/Desktop/so_long/MLX42/build/CMakeFiles/install/local.dir
-/Users/vnaslund/Desktop/so_long/MLX42/build/CMakeFiles/install/strip.dir
+/Users/gkrusta/Desktop/cub3d_v/MLX42/build/CMakeFiles/mlx42.dir
+/Users/gkrusta/Desktop/cub3d_v/MLX42/build/CMakeFiles/edit_cache.dir
+/Users/gkrusta/Desktop/cub3d_v/MLX42/build/CMakeFiles/rebuild_cache.dir
+/Users/gkrusta/Desktop/cub3d_v/MLX42/build/CMakeFiles/list_install_components.dir
+/Users/gkrusta/Desktop/cub3d_v/MLX42/build/CMakeFiles/install.dir
+/Users/gkrusta/Desktop/cub3d_v/MLX42/build/CMakeFiles/install/local.dir
+/Users/gkrusta/Desktop/cub3d_v/MLX42/build/CMakeFiles/install/strip.dir
