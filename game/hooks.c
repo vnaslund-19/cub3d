@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:55:06 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/11 14:03:55 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/11 16:48:17 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	loop_hook(void	*param)
 	t_game	*game;
 
 	game = param;
+	// Call raycaster
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W)
 		|| mlx_is_key_down(game->mlx, MLX_KEY_UP))
 		move_forward(game);

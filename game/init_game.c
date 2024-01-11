@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:05:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/11 14:29:22 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/11 16:09:45 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	init_window(t_game *game)
 
 void	load_textures(t_game *game)
 {
+	game->textures = malloc(sizeof(t_textures));
+	if (!game->textures)
+		exit_handler("Malloc error", game);
 	game->textures->north = mlx_load_png(game->data->no_path);
 	if (!game->textures->north)
 		exit_handler("NO texture", game);
@@ -40,4 +43,8 @@ void	load_textures(t_game *game)
 	game->textures->east = mlx_load_png(game->data->ea_path);
 	if (!game->textures->east)
 		exit_handler("EA texture", game);
+	game->textures->floor_color = get_rgb(game->data->rfloor,
+			game->data->gfloor, game->data->bfloor);
+	game->textures->ceiling_color = get_rgb(game->data->rceil,
+			game->data->gceil, game->data->bceil);
 }

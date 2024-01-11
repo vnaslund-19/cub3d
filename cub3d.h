@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/11 14:19:03 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/11 16:49:58 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,33 @@
 # define MIN_WIDTH 500
 # define MIN_HEIGHT 500
 
+# define FOV (M_PI / 2)
+# define MOVE_SPEED 0.01
+# define ROTATION_SPEED 0.01
+
 typedef struct s_data		t_data;
 typedef struct s_textures	t_textures;
+typedef struct s_player		t_player;
 
 typedef struct s_game
 {
 	mlx_t		*mlx;
+	t_player	*player;
 	t_textures	*textures;
 	t_data		*data;
 }				t_game;
+
+typedef struct s_player
+{
+	double		x;
+	double		y;
+	double		view_angle;
+	double		x_viewdir; // vector which depend on view_angle
+	double		y_viewdir; // vector which depend on view_angle
+	double		ray_angle;
+	double		x_raydir;
+	double		y_raydir;
+}				t_player;
 
 typedef struct s_textures
 {
@@ -42,6 +60,8 @@ typedef struct s_textures
 	mlx_texture_t	*south;
 	mlx_texture_t	*west;
 	mlx_texture_t	*east;
+	int				floor_color;
+	int				ceiling_color;
 }				t_textures;
 
 typedef struct s_data
@@ -117,5 +137,8 @@ void	move_left(t_game *game);
 void	move_right(t_game *game);
 void	rotate_left(t_game *game);
 void	rotate_right(t_game *game);
+
+// Utils
+int		get_rgb(int r, int g, int b);
 
 #endif
