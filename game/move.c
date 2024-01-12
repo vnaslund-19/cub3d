@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:13:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/11 17:13:53 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/12 14:38:22 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 // Add collision margin depending on graphics
 void	move_player(t_game *game, double newx, double newy)
 {
-	if (game->data->map[(int)game->player->y][(int)newx] != WALL)
+	if (game->data->map[(int)game->player->y]
+		[(int)(newx + COLLISION_MARGIN)] != WALL
+		&& game->data->map[(int)game->player->y]
+		[(int)(newx - COLLISION_MARGIN)] != WALL)
 		game->player->x = newx;
-	if (game->data->map[(int)newy][(int)game->player->x] != WALL)
+	if (game->data->map[(int)(newy + COLLISION_MARGIN)]
+		[(int)game->player->x] != WALL
+		&& game->data->map[(int)(newy - COLLISION_MARGIN)]
+		[(int)game->player->x] != WALL)
 		game->player->y = newy;
 }
 

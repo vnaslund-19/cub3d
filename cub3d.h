@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/11 16:49:58 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/12 14:35:19 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define FOV (M_PI / 2)
 # define MOVE_SPEED 0.01
 # define ROTATION_SPEED 0.01
+# define COLLISION_MARGIN 0.1
 
 typedef struct s_data		t_data;
 typedef struct s_textures	t_textures;
