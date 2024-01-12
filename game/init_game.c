@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:05:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/11 16:09:45 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/12 17:37:40 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,45 @@ void	load_textures(t_game *game)
 			game->data->gfloor, game->data->bfloor);
 	game->textures->ceiling_color = get_rgb(game->data->rceil,
 			game->data->gceil, game->data->bceil);
+}
+
+void	set_start_angles(t_game *game)
+{
+	if (game->data->player_direction == 'N')
+	{
+		game->player->view_angle = M_PI / 2;
+		game->player->x_viewdir = 0;
+		game->player->y_viewdir = -1;
+	}
+	else if (game->data->player_direction == 'S')
+	{
+		game->player->view_angle = M_PI * 3 / 2;
+		game->player->x_viewdir = 0;
+		game->player->y_viewdir = 1;
+	}
+	else if (game->data->player_direction == 'E')
+	{
+		game->player->view_angle = 0;
+		game->player->x_viewdir = 1;
+		game->player->y_viewdir = 0;
+	}
+	else
+	{
+		game->player->view_angle = M_PI;
+		game->player->x_viewdir = -1;
+		game->player->y_viewdir = 0;
+	}
+}
+
+void	init_player(t_game *game)
+{
+	game->player = malloc(sizeof(t_player));
+	if (!game->player)
+		exit_handler("Malloc error", game);
+	game->player->x = (double)game->data->p_position[0] + 0.5;
+	game->player->y = (double)game->data->p_position[1] + 0.5;
+	set_start_angles(game);
+	game->player->ray_angle = game->player->view_angle;
+	game->player->x_raydir = game->player->x_viewdir;
+	game->player->y_raydir = game->player->y_viewdir;
 }

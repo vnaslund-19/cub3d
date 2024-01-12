@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 17:11:49 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/12 16:17:42 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/12 17:42:22 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,4 @@ void	rotate(t_game *game, int angle)
 	game->player->view_angle = new_angle;
 	game->player->x_viewdir = cos(game->player->view_angle);
 	game->player->y_viewdir = -sin(game->player->view_angle);
-	printf("rotation detected\n");
 }
