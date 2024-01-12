@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/12 14:35:19 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:10:58 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "MLX42/include/MLX42/MLX42.h"
 # include <stdbool.h>
 # include <fcntl.h>
+# include <math.h>
 
 # define EMPTY '0'
 # define WALL '1'
@@ -136,8 +137,7 @@ void	move_forward(t_game *game);
 void	move_backward(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
-void	rotate_left(t_game *game);
-void	rotate_right(t_game *game);
+void	rotate(t_game *game, int angle);
 
 // Utils
 int		get_rgb(int r, int g, int b);

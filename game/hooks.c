@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:55:06 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/11 16:48:17 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:07:16 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	loop_hook(void	*param)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 		move_right(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-		rotate_left(game);
+		rotate(game, 1);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		rotate_right(game);
+		rotate(game, -1);
 }
