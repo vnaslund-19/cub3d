@@ -65,8 +65,8 @@ void	move_right(t_game *game)
 	double	newx;
 	double	newy;
 
-	newx = game->player->x - (game->player->x_viewdir * MOVE_SPEED);
-	newy = game->player->y + (game->player->y_viewdir * MOVE_SPEED);
+	newx = game->player->x - (game->player->y_viewdir * MOVE_SPEED);
+	newy = game->player->y + (game->player->x_viewdir * MOVE_SPEED);
 	move_player(game, newx, newy);
 	printf("Right movement detected\n");
 }
