@@ -143,6 +143,6 @@ void	rotate(t_game *game, int angle);
 void	init_player(t_game *game);
 
 // Utils
-int		get_rgb(int r, int g, int b);
+int		get_rgba(int r, int g, int b, int a);
 
 #endif

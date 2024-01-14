@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	get_rgb(int r, int g, int b)
+int	get_rgba(int r, int g, int b, int a)
 {
-	return (r << 16 | g << 8 | b);
+	return (r << 24 | g << 16 | b << 8 | a);
 }

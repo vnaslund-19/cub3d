@@ -12,7 +12,6 @@
 
 #include "../cub3d.h"
 
-// Add collision margin depending on graphics
 void	move_player(t_game *game, double newx, double newy)
 {
 	if (game->data->map[(int)game->player->y]

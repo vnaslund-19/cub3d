@@ -43,10 +43,10 @@ void	load_textures(t_game *game)
 	game->textures->east = mlx_load_png(game->data->ea_path);
 	if (!game->textures->east)
 		exit_handler("EA texture", game);
-	game->textures->floor_color = get_rgb(game->data->rfloor,
-			game->data->gfloor, game->data->bfloor);
-	game->textures->ceiling_color = get_rgb(game->data->rceil,
-			game->data->gceil, game->data->bceil);
+	game->textures->floor_color = get_rgba(game->data->rfloor,
+			game->data->gfloor, game->data->bfloor, 255);
+	game->textures->ceiling_color = get_rgba(game->data->rceil,
+			game->data->gceil, game->data->bceil, 255);
 }
 
 void	set_start_angles(t_game *game)
