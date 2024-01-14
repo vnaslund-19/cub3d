@@ -144,5 +144,6 @@ void	init_player(t_game *game);
 
 // Utils
 int		get_rgba(int r, int g, int b, int a);
+int		get_texture_pixel_color(mlx_texture_t *texture, int y, int x);
 
 #endif
