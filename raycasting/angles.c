@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:46:29 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/14 22:09:43 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/14 22:21:49 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,14 +124,20 @@ t_ray_steps	get_first_step(t_data *data, t_player player, double angle, char cro
 		else if (determine_quadrant(player) == 3)
 			len = (ceil(player.y) - player.y) / sin(angle - M_PI);
 		else
-			len = (ceil(player.y) - player.y) / sin(angle - 2 * M_PI - angle);
+			len = (ceil(player.y) - player.y) / sin(2 * M_PI - angle);
 		first_step.x = player.x + len * cos(angle);
 		first_step.y = player.y - len * sin(angle);
 	}
 	else
 	{
 		if (determine_quadrant(player) == 1)
-			len = (player.y - floor(player.y)) / sin(angle);
+			len = (ceil(player.x) - player.x) / cos(angle);
+		else if (determine_quadrant(player) == 2)
+			len = (player.x - floor(player.x)) / cos(M_PI - angle);
+		else if (determine_quadrant(player) == 3)
+			len = (player.x - floor(player.x)) / cos(angle - M_PI);
+		else
+			len = (ceil(player.x) - player.x) / cos(2 * M_PI - angle);
 	}
 	return (first_step);
 }
