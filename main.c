@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/11 12:58:06 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/15 13:19:58 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	main(int argc, char **argv)
 	init_data(game->data);
 	ft_read_file(game, argv);
 	//debug_print_mapinfo(data);
-	init_player(data);
+	init_player(game, game->data);
+	ray_caster();
 	init_window(game);
 	ft_end_game(game);
 	return (0);

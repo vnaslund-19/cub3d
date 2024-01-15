@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/14 22:05:49 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/15 18:56:08 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ typedef struct s_game
 {
 	t_textures	*textures;
 	t_data		*data;
+	t_ray		*ray;
+	t_player	*player;
+	t_column	*pixel_info;
 }				t_game;
 
 typedef struct s_textures
@@ -45,10 +48,21 @@ typedef struct s_textures
 	mlx_texture_t	*east;
 }				t_textures;
 
-typedef struct s_ray_steps {
+typedef struct s_pos {
 	double		x;
 	double		y;
-}				t_ray_steps;
+}				t_pos;
+
+typedef struct s_ray {
+	double		ray_angle;
+	double		x_raydir;
+	double		y_raydir;
+	double		d_angle;
+	int			quadrant;
+	t_pos		sign;
+	t_pos		horizontal;
+	t_pos		vertical;
+}				t_ray;
 
 typedef struct s_player {
 	double		x;
@@ -56,17 +70,14 @@ typedef struct s_player {
 	double		view_angle;
 	double		x_viewdir; // vector which depend on view_angle
 	double		y_viewdir; // vector which depend on view_angle
-	double		ray_angle;
-	double		x_raydir;
-	double		y_raydir;
 }				t_player;
 
 typedef struct s_column {
-	t_ray_steps	wall_hit; // the x;y coordinate when the ray touches a wall
-	double	distance; // distance in coordinate plane from x;y to x axis
-	char	touched_wall; // side of the wall block the ray has touched
-	double	ray_length;
-}			t_column;
+	t_pos		wall_hit; // the x;y coordinate when the ray touches a wall
+	double		distance; // distance in coordinate plane from x;y to x axis
+	char		touched_wall; // side of the wall block the ray has touched
+	double		ray_len;
+}				t_column;
 
 typedef struct s_data
 {
@@ -91,9 +102,6 @@ typedef struct s_data
 	char	*we_path;
 	char	*ea_path;
 	int		first_line_of_map;
-	//bool		hit;
-	t_player	pos;
-	t_pixel_col	col;
 }			t_data;
 
 void	ft_read_file(t_game *game, char **argv);
@@ -137,5 +145,6 @@ void	init_window(t_game *game);
 void	load_textures(t_game *game);
 
 //raycast
-void	init_player(t_data *data);
+void	init_player(t_data *data, t_player player);
+
 #endif

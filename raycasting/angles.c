@@ -6,60 +6,43 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:46:29 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/14 22:21:49 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/15 18:59:45 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//t_player player, t_data *data
-
-
-
-double	get_ray_angle(int i)
+void	init_ray(t_ray *ray, t_player player, double angle, int i)
 {
-/* 	double	side_h;
-	double	side_a;
-	double	side_b
-	double	angle_a;
+	ray->ray_angle = get_ray_angle(player.view_angle, i);
+	ray->d_angle = ray->ray_angle;
+	ray->sign.x = 1;
+	ray->sign.y = 1;
+	if (cos(angle) < 0)
+		ray->sign.x *= -1;
+	if (sin(angle) > 0)
+		ray->sign.y *= -1;
+	ray->vertical.x = ray->sign.x;
+	ray->vertical.y = tan(angle) * ray->sign.y;
+	ray->horizontal.x = 1 / tan(angle) * ray->sign.x;
+	ray->horizontal.y = ray->sign.y;
+}
 
-	side_h = (WIDTH / 2) / sin(M_PI / 4);
-	side_a = 0.5 + i;
-	while (d < WIDTH / 2)
-	{
-		side_a = sqrt(side_a * side_a + side_h * side_h)
-			- 2 * side_a + side_h * code(M_PI / 4);
-		d += 1;
-		player.ray_angle = player.view_angle + angle_a;
-	}
-	if (data->player_direction == 'N')
-	{
-		player.ray_angle = // ray angle is players view angle / FOV
-	}
-
-	x_ststep = cos();
-	y_ststep = sin(); */
-	//The ray starts at the position of the player (posX, posY)
-/* 	if ()
-		hit = true;
-	else
-		 */
+double	get_ray_angle(double angle, int i)
+{
 	double	ray_angle;
 
 	ray_angle = M_PI / 2;
 	return (ray_angle);
 }
 
-void	init_player(t_data *data)
+void	init_player(t_game *game, t_data *data)
 {
-
-	data->rows = 5;
-	data->max_cols = 6;
+	t_player	player;
+	
+	game->player = &player;
 	player.x = (double)data->p_position[0] + 0.5;
 	player.y =(double)data->p_position[1] + 0.5;
-/* 	data->mapx = (int)player.x;
-	data->mapy = (int)player.y; */
-	data->hit = false;
 	if (data->player_direction == 'N')
 	{
 		player.view_angle = M_PI / 2;
@@ -74,6 +57,7 @@ void	init_player(t_data *data)
 	}
 	else if (data->player_direction == 'E')
 	{
+		player.view_angle = 0;
 		player.x_viewdir = 1;
 		player.y_viewdir = 0;
 	}
@@ -83,104 +67,102 @@ void	init_player(t_data *data)
 		player.x_viewdir = -1;
 		player.y_viewdir = 0;
 	}
-	player.ray_angle = player.view_angle;
-	player.x_raydir = player.x_viewdir;
-	player.y_raydir = player.y_viewdir;
 }
 
-int	printer(t_data *data, t_player player)
+/* int	printer(t_data *data, t_player player)
 {
 	printf("Player position: (%.2f, %.2f)\n", data->pos.x, data->pos.y);
 	printf("View angle: %.2f radians\n", data->pos.view_angle);
 	return (0);
-}
+} */
 
-int	determine_quadrant(t_player player)
+void	determine_quadrant(t_player player, t_ray *ray)
 {
-	int	quadrant;
-	
-	if (player->x_raydir > 0 && player->y_raydir < 0)
-		quadrant = 1;
-	else if (player->x_raydir < 0 && player->y_raydir < 0)
-		quadrant = 2;
-	else if (player->x_raydir < 0 && rplayer->y_raydir > 0)
-		quadrant = 3;
+
+	if (ray->sign.x > 0 && ray->sign.y < 0)
+	{
+		ray->d_angle = ray->ray_angle;
+		ray->quadrant = 1;
+	}
+	else if (ray->sign.x < 0 && ray->sign.y < 0)
+	{
+		ray->d_angle = M_PI - ray->ray_angle;
+		ray->quadrant = 2;
+	}
+	else if (ray->sign.x < 0 && ray->sign.y > 0)
+	{
+		ray->d_angle = ray->ray_angle - M_PI;
+		ray->quadrant = 3;
+	}
 	else
-		quadrant = 4;
-	return (quadrant);
+	{
+		ray->d_angle = 2 * M_PI - ray->ray_angle;
+		ray->quadrant = 4;
+	}
 }
 
-t_ray_steps	get_first_step(t_data *data, t_player player, double angle, char crossing)
+t_pos	get_first_step(t_player player, t_ray *ray, double angle, char crossing)
 {
-	t_ray_steps	first_step;
-	double		len;
+	t_pos	first_step;
+	double	len;
 
 	if (crossing = 'x')
 	{
-		if (determine_quadrant(player) == 1)
+		if (ray->quadrant == 1 || ray->quadrant == 2)
 			len = (player.y - floor(player.y)) / sin(angle);
-		else if (determine_quadrant(player) == 2)
-			len = (player.y - floor(player.y)) / sin(M_PI - angle);
-		else if (determine_quadrant(player) == 3)
-			len = (ceil(player.y) - player.y) / sin(angle - M_PI);
 		else
-			len = (ceil(player.y) - player.y) / sin(2 * M_PI - angle);
-		first_step.x = player.x + len * cos(angle);
-		first_step.y = player.y - len * sin(angle);
+			len = (ceil(player.y) - player.y) / sin(angle);
 	}
 	else
 	{
-		if (determine_quadrant(player) == 1)
+		if (ray->quadrant == 1 || ray->quadrant == 4)
 			len = (ceil(player.x) - player.x) / cos(angle);
-		else if (determine_quadrant(player) == 2)
-			len = (player.x - floor(player.x)) / cos(M_PI - angle);
-		else if (determine_quadrant(player) == 3)
-			len = (player.x - floor(player.x)) / cos(angle - M_PI);
 		else
-			len = (ceil(player.x) - player.x) / cos(2 * M_PI - angle);
+			len = (player.x - floor(player.x)) / cos(angle);
 	}
+	first_step.x = player.x + player.x_raydir * len;
+	first_step.y = player.y + player.y_raydir * len;
 	return (first_step);
 }
 
-/* bool	wall_check()
+t_column	get_ray_length(t_ray *ray, t_game *game, t_pos step, char crossing)
 {
-	if (map[j][i] == '1')
-		return (true);
-	return (false);
-} */
+	t_pos		first_step;
+	t_column	pixel;
+	t_player	player;
+	double		delta;
 
-t_column	get_ray_length(t_data *data, t_player player, char crossing)
-{
-	t_ray_steps	first_step;
-	t_column	ray;
-
-	first_step = get_first_step(player, player->ray_angle, crossing);
+	first_step = get_first_step(player, ray, ray->d_angle, crossing);
+	player = game->player;
+	delta = get_absoulte(ray->ray_angle, game->player->view_angle);
 	while (1)
 	{
-		if (wall_check())
+		if (wall_check(game->data->map, ray, first_step, corssing))
 		{
-			ray.wall_hit.x = first_step.x;
-			ray.wall_hit.x = first_step.y;
+			pixel.wall_hit.x = first_step.x;
+			pixel.wall_hit.y = first_step.y;
 			break ;
 		}
-		
-		first_step.x += 
-		first_step.y += 
+		first_step.x += step.x;
+		first_step.y += step.y;
 	}
+	pixel.ray_len = sqrt(pow(player.x - pixel.wall_hit.x, 2)
+		+ pow(player.y - pixel.wall_hit.y, 2));
+	pixel.distance = pixel.ray_len * cos(delta);
+	return (pixel);
 }
 
-void	ray_caster(t_data *data)
+void	ray_caster(t_game *game, t_data *data, int i)
 {
-	t_player	player;
 	t_column	x_col;
 	t_column	y_col;
+	t_ray		ray;
 
-	player = data->pos;
-	init_player(data, player);
-	x_col = get_ray_length(data, player, 'x');
-	y_col = get_ray_length(data, player, 'y');
-	if (x_col->ray_len > y_col->ray_len)
-		return (y_col->ray_len);
+	init_ray(&ray, player, i);
+	x_col = get_ray_length(ray, game, ray.horizontal, 'x');
+	y_col = get_ray_length(ray, game, ray.vertical 'y');
+	if (x_col.ray_len > y_col.ray_len)
+		return (y_col.ray_len);
 	else
-		return (x_col->ray_len);
+		return (x_col.ray_len);
 }
