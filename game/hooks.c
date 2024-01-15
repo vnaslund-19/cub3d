@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:55:06 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/12 15:07:16 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/15 12:37:11 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	loop_hook(void	*param)
 	t_game	*game;
 
 	game = param;
+	draw_texture(game, game->textures->north); // just testing
 	// Call raycaster
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W)
 		|| mlx_is_key_down(game->mlx, MLX_KEY_UP))
