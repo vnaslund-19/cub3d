@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:46:29 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/15 18:59:45 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/15 19:08:43 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ t_pos	get_first_step(t_player player, t_ray *ray, double angle, char crossing)
 		else
 			len = (player.x - floor(player.x)) / cos(angle);
 	}
-	first_step.x = player.x + player.x_raydir * len;
-	first_step.y = player.y + player.y_raydir * len;
+	first_step.x = player.x + ray->sign.x * len;
+	first_step.y = player.y + ray->sign.y * len;
 	return (first_step);
 }
 
@@ -133,11 +133,11 @@ t_column	get_ray_length(t_ray *ray, t_game *game, t_pos step, char crossing)
 	double		delta;
 
 	first_step = get_first_step(player, ray, ray->d_angle, crossing);
-	player = game->player;
-	delta = get_absoulte(ray->ray_angle, game->player->view_angle);
+	player = *(game->player);
+	delta = get_absoulte(ray->ray_angle, player.view_angle);
 	while (1)
 	{
-		if (wall_check(game->data->map, ray, first_step, corssing))
+		if (wall_check(game->data->map, ray, first_step, crossing))
 		{
 			pixel.wall_hit.x = first_step.x;
 			pixel.wall_hit.y = first_step.y;
@@ -159,8 +159,8 @@ void	ray_caster(t_game *game, t_data *data, int i)
 	t_ray		ray;
 
 	init_ray(&ray, player, i);
-	x_col = get_ray_length(ray, game, ray.horizontal, 'x');
-	y_col = get_ray_length(ray, game, ray.vertical 'y');
+	x_col = get_ray_length(&ray, game, ray.horizontal, 'x');
+	y_col = get_ray_length(&ray, game, ray.vertical 'y');
 	if (x_col.ray_len > y_col.ray_len)
 		return (y_col.ray_len);
 	else

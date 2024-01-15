@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/15 18:56:08 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/15 19:01:12 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ typedef struct s_pos {
 
 typedef struct s_ray {
 	double		ray_angle;
-	double		x_raydir;
-	double		y_raydir;
 	double		d_angle;
 	int			quadrant;
 	t_pos		sign;
