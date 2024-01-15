@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:12:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/15 15:23:52 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/15 15:29:51 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	draw_texture(t_game	*game, mlx_texture_t *texture)
 		x++;
 	}
 }
-/* Implementation:
+Implementation:
 void	draw_column(t_game *game, int x, int w_start, int w_end)
 {
 	int	y;
@@ -92,4 +92,3 @@ void	calc_wall_and_draw(t_game *game, int x)
 		w_end = WIN_HEIGHT;
 	draw_column(game, x, w_start, w_end);
 }
-*/
