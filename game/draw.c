@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:12:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/15 15:31:52 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:13:23 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	draw_floor_and_ceiling(t_game *game)
 	}
 }
 
+// test function
 void	draw_texture(t_game	*game, mlx_texture_t *texture)
 {
 	u_int32_t	y;
@@ -53,7 +54,7 @@ void	draw_texture(t_game	*game, mlx_texture_t *texture)
 		x++;
 	}
 }
-
+/*
 void	draw_column(t_game *game, int x, int w_start, int w_end)
 {
 	int	y;
@@ -67,7 +68,7 @@ void	draw_column(t_game *game, int x, int w_start, int w_end)
 			mlx_put_pixel(game->image, x, y, game->textures->floor_color);
 		else
 			mlx_put_pixel(game->image, x, y,
-				get_texture_pixel_color(ray->texture_hit,
+				get_texture_pixel_color(ray->texture_hit, // Part of some struct
 					(y - w_start) % 64, ray->tex_x_pos));
 		y++;
 	}
@@ -75,7 +76,7 @@ void	draw_column(t_game *game, int x, int w_start, int w_end)
 // Information needed:
 // ray length
 // What texture was hit
-// the x pos in which the text was hit which is:
+// the x pos in which the texture was hit which is:
 // (floating-point part of x coordinate * texture_width)
 void	calc_wall_and_draw(t_game *game, int x)
 {
@@ -92,3 +93,4 @@ void	calc_wall_and_draw(t_game *game, int x)
 		w_end = WIN_HEIGHT;
 	draw_column(game, x, w_start, w_end);
 }
+*/
