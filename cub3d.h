@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/15 19:01:12 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/16 11:20:56 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 
 typedef struct s_data		t_data;
 typedef struct s_textures	t_textures;
+typedef struct s_pos		t_pos;
+typedef struct s_ray		t_ray;
+typedef struct s_player		t_player;
+typedef struct s_column		t_column;
 
 typedef struct s_game
 {
@@ -143,6 +147,17 @@ void	init_window(t_game *game);
 void	load_textures(t_game *game);
 
 //raycast
-void	init_player(t_data *data, t_player player);
+double	get_ray_angle(double angle);
+void	init_ray(t_ray *ray, t_player *player);
+void	determine_quadrant(t_ray *ray);
+t_pos	get_first_step(t_player player, t_ray *ray, double angle, char crossing);
+t_column	get_ray_length(t_ray *ray, t_game *game, t_pos step, char crossing);
+t_column	ray_caster(t_game *game);
+void	init_player(t_game *game, t_data *data);
+
+
+// ray casting utils
+double	get_absoulte(double ray_angle, double view_angle);
+bool	wall_check(t_data *data, t_ray *ray, t_pos step, char crossing);
 
 #endif
