@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/16 11:14:51 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/16 11:52:12 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	init_data(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_game	*game;
+	t_game		*game;
+	t_column	column;
 
 	if (argc != 2)
 	{
@@ -37,9 +38,9 @@ int	main(int argc, char **argv)
 		exit_handler("Malloc error", game);
 	init_data(game->data);
 	ft_read_file(game, argv);
-	//debug_print_mapinfo(data);
+	debug_print_mapinfo(game->data);
 	init_player(game, game->data);
-	ray_caster(game);
+	column = ray_caster(game);
 	init_window(game);
 	ft_end_game(game);
 	return (0);

@@ -6,12 +6,13 @@
 #    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 16:46:17 by vnaslund          #+#    #+#              #
-#    Updated: 2024/01/16 11:14:14 by gkrusta          ###   ########.fr        #
+#    Updated: 2024/01/16 11:27:48 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3d
-CFLAGS  = -Wall -Wextra -Werror -g
+CFLAGS  = -Wall -Wextra -Werror -g -fsanitize=address
+LDFLAGS = -fsanitize=address
 LIBMLX  = ./MLX42
 LIBMLX_A = $(LIBMLX)/build/libmlx42.a
 LIBFT   = ./libft
@@ -50,11 +51,11 @@ $(LIBMLX_A):
 $(OBJ_DIR)%.o: %.c
 	@mkdir -p $(@D)
 	@echo "Compiling $<..."
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+	@$(CC) $(CFLAGS) $(LDFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
 	@echo "Linking $@..."
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	@$(CC) $(LDFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 	@echo "$@ compilation complete."
 
 clean:

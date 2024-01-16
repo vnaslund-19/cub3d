@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/16 11:20:56 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/16 13:46:48 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdbool.h>
 # include <fcntl.h>
 # include <math.h>
+# include <limits.h>
 
 # define EMPTY '0'
 # define WALL '1'
@@ -27,6 +28,8 @@
 # define MIN_WIDTH 500
 # define MIN_HEIGHT 500
 # define FOV (M_PI / 2)
+
+# define IS_IN_RANGE(value) ((value) >= INT_MIN && (value) <= INT_MAX)
 
 typedef struct s_data		t_data;
 typedef struct s_textures	t_textures;
