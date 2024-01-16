@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/12 17:29:24 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:02:11 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ void	init_data(t_game *game)
 	game->data->so_path = NULL;
 	game->data->we_path = NULL;
 	game->data->ea_path = NULL;
+	game->data->allocated_file = false;
+	game->data->allocated_map = false;
+	game->data->rfloor = -1;
+	game->data->gfloor = -1;
+	game->data->bfloor = -1;
+	game->data->rceil = -1;
+	game->data->gceil = -1;
+	game->data->bceil = -1;
 	game->textures = NULL;
 }
 

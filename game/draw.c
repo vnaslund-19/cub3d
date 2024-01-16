@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:12:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/15 16:13:23 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/16 12:25:10 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	draw_texture(t_game	*game, mlx_texture_t *texture)
 		while (y < texture->height * 12)
 		{
 			mlx_put_pixel(game->image, x, y,
-				get_texture_pixel_color(texture, y % 64, x % 64));
+				get_texture_pixel_color(texture, y % texture->height,
+					x % texture->width));
 			y++;
 		}
 		x++;
@@ -69,7 +70,7 @@ void	draw_column(t_game *game, int x, int w_start, int w_end)
 		else
 			mlx_put_pixel(game->image, x, y,
 				get_texture_pixel_color(ray->texture_hit, // Part of some struct
-					(y - w_start) % 64, ray->tex_x_pos));
+					(y - w_start) % ray->texture_hit->height, ray->tex_x_pos));
 		y++;
 	}
 }
