@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/16 11:52:12 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/17 16:23:23 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ void	init_data(t_data *data)
 	data->so_path = NULL;
 	data->we_path = NULL;
 	data->ea_path = NULL;
+}
+
+void	printer(t_game *game)
+{
+	t_player *player = game->player;
+
+	printf("Player position: (%.2f, %.2f)\n", player->x, player->y);
+	printf("View angle: %.2f radians\n", player->view_angle);
 }
 
 int	main(int argc, char **argv)
@@ -39,8 +47,12 @@ int	main(int argc, char **argv)
 	init_data(game->data);
 	ft_read_file(game, argv);
 	debug_print_mapinfo(game->data);
-	init_player(game, game->data);
+	game->player = malloc(sizeof(t_player));
+	init_player(game->player, game->data);
+	printer(game);
 	column = ray_caster(game);
+	printf("Ray Length: %f\n", column.ray_len);
+	printf("Ray Length (perdpendicular): %f\n", column.distance);
 	init_window(game);
 	ft_end_game(game);
 	return (0);

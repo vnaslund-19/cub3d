@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/16 13:46:48 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/17 17:01:58 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,14 +153,16 @@ void	load_textures(t_game *game);
 double	get_ray_angle(double angle);
 void	init_ray(t_ray *ray, t_player *player);
 void	determine_quadrant(t_ray *ray);
-t_pos	get_first_step(t_player player, t_ray *ray, double angle, char crossing);
+t_pos	get_first_step(t_player *player, t_ray *ray, double angle, char crossing);
 t_column	get_ray_length(t_ray *ray, t_game *game, t_pos step, char crossing);
 t_column	ray_caster(t_game *game);
-void	init_player(t_game *game, t_data *data);
+void	init_player(t_player *player, t_data *data);
 
 
 // ray casting utils
 double	get_absoulte(double ray_angle, double view_angle);
 bool	wall_check(t_data *data, t_ray *ray, t_pos step, char crossing);
+void	align_coordinates(t_ray *ray, int *i, int *j, char crossing);
+
 
 #endif
