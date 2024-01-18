@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 17:05:04 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 17:20:07 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@
 # define WIN_HEIGHT 1080
 # define MIN_WIDTH 500
 # define MIN_HEIGHT 500
-# define FOV (M_PI / 2)
 
+# define FOV (M_PI / 2)
+# define MOVE_SPEED 0.78
+# define ROTATION_SPEED 0.78
+# define COLLISION_MARGIN 0.15
 # define IS_IN_RANGE(value) ((value) >= INT_MIN && (value) <= INT_MAX)
 
 typedef struct s_data		t_data;
@@ -41,6 +44,8 @@ typedef struct s_column		t_column;
 typedef struct s_game
 {
 	mlx_t		*mlx;
+	t_player	*player;
+	mlx_image_t	*image;
 	t_textures	*textures;
 	t_data		*data;
 	t_ray		*ray;
@@ -48,12 +53,26 @@ typedef struct s_game
 	t_column	*pixel_info;
 }				t_game;
 
+typedef struct s_player
+{
+	double		x;
+	double		y;
+	double		view_angle;
+	double		x_viewdir; // vector which depend on view_angle
+	double		y_viewdir; // vector which depend on view_angle
+	double		ray_angle;
+	double		x_raydir;
+	double		y_raydir;
+}				t_player;
+
 typedef struct s_textures
 {
 	mlx_texture_t	*north;
 	mlx_texture_t	*south;
 	mlx_texture_t	*west;
 	mlx_texture_t	*east;
+	int				floor_color;
+	int				ceiling_color;
 	int				floor_color;
 	int				ceiling_color;
 }				t_textures;
@@ -152,9 +171,22 @@ void	ft_end_game(t_game *game);
 void	init_window(t_game *game);
 void	load_textures(t_game *game);
 
-// init player
-void		init_player(t_player *player, t_data *data);
-void		init_player_extension(t_player *player, t_data *data);
+void	key_hook(mlx_key_data_t keydata, void *param);
+void	loop_hook(void	*param);
+void	move_forward(t_game *game);
+void	move_backward(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+void	rotate(t_game *game, int angle);
+
+// Raycasting
+void	init_player(t_game *game);
+void	draw_floor_and_ceiling(t_game *game);
+void	draw_texture(t_game	*game, mlx_texture_t *texture); //test function
+
+// Utils
+int		get_rgba(int r, int g, int b, int a);
+int		get_texture_pixel_color(mlx_texture_t *texture, int y, int x);
 
 //raycast
 double		get_ray_angle(double angle, double x);

@@ -23,7 +23,6 @@ void	ft_playable_check(t_game *game, char **map)
 	init_explore(game, &visited);
 	explore(game, game->data->p_position[0], game->data->p_position[1],
 		visited);
-	//debug_print_visited(visited, game->data->rows, game->data->max_cols);
 	ft_free_array((void **)visited);
 	revise_data(game);
 }
