@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/15 12:36:51 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:36:08 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define MIN_HEIGHT 500
 
 # define FOV (M_PI / 2)
-# define MOVE_SPEED 0.78
-# define ROTATION_SPEED 0.78
+# define MOVE_SPEED 0.03
+# define ROTATION_SPEED 0.03
 # define COLLISION_MARGIN 0.15
 
 typedef struct s_data		t_data;
