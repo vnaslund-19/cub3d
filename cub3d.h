@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 15:50:03 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 17:05:04 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,12 +157,12 @@ void		init_player(t_player *player, t_data *data);
 void		init_player_extension(t_player *player, t_data *data);
 
 //raycast
-double		get_ray_angle(double angle);
-void		init_ray(t_ray *ray, t_player *player);
+double		get_ray_angle(double angle, double x);
+void		init_ray(t_ray *ray, t_player *player, int x);
 void		determine_quadrant(t_ray *ray);
 t_pos		get_first_step(t_player *player, t_ray *ray, double angle, char crossing);
 t_pos		get_ray_pos(t_ray *ray, t_game *game, t_pos step, char crossing);
-t_column	ray_caster(t_game *game);
+t_column	ray_caster(t_game *game, int i);
 t_column	init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing);
 
 // ray casting utils
@@ -172,7 +172,6 @@ void		align_coordinates(t_ray *ray, int *i, int *j, char crossing);
 mlx_texture_t		get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray);
 mlx_texture_t		get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray);
 double		get_fractional_part(t_pos *hit_point);
-
 
 
 #endif

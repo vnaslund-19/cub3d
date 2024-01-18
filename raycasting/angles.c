@@ -6,16 +6,16 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:46:29 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/18 15:40:13 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 17:05:07 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init_ray(t_ray *ray, t_player *player)
+void	init_ray(t_ray *ray, t_player *player, int x)
 {
-	//ray->ray_angle = get_ray_angle(player->view_angle, i);
-	ray->ray_angle = player->view_angle;
+	ray->ray_angle = get_ray_angle(player->view_angle, x);
+	//ray->ray_angle = player->view_angle;
 	ray->sign.x = 1;
 	ray->sign.y = 1;
 	if (cos(ray->ray_angle) < 0)
@@ -37,14 +37,23 @@ void	init_ray(t_ray *ray, t_player *player)
 	printf("steps in horizontal dir:   y:%f    x:%f\n", ray->horizontal.y, ray->horizontal.x);
 }
 
-/* double	get_ray_angle(double angle, int i)
+double	get_ray_angle(double angle, double x)
 {
 	double	ray_angle;
+	//double	delta;
 
-	ray_angle = angle;
+	//delta = (WIN_WIDTH / 2 - 0.5 - i);
+	//ray_angle = delta / (sqrt(pow(delta, 2) + pow(WIN_WIDTH / 2, 2)));
+/* 	if (i < WIN_WIDTH / 2 - 0.5)
+		return (angle + ray_angle);
+	else
+		return (angle - ray_angle); */
+	
+	ray_angle = angle + FOV/2 - ((x / WIN_WIDTH) * FOV);
+	printf("ray angle is: %f\n", ray_angle);
 	return (ray_angle);
 }
- */
+
 void	determine_quadrant(t_ray *ray)
 {
 	if (ray->sign.x > 0 && ray->sign.y < 0)
@@ -133,13 +142,13 @@ t_column	init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing)
 	return (pixel);
 }
 
-t_column	ray_caster(t_game *game)
+t_column	ray_caster(t_game *game, int x)
 {
 	t_column	x_col;
 	t_column	y_col;
 	t_ray		ray;
-
-	init_ray(&ray, game->player);
+	
+	init_ray(&ray, game->player, x);
 	x_col = init_pixel_column(&ray, game, ray.horizontal, 'x');
 	y_col = init_pixel_column(&ray, game, ray.vertical, 'y');
 	if (x_col.distance > y_col.distance)

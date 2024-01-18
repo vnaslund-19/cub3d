@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 15:53:09 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 17:05:31 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,24 @@ void	printer(t_game *game)
 	printf("View angle: %.2f radians\n", player->view_angle);
 }
 
+void	raycast(t_game *game, t_column *pixel_info)
+{
+	int	x;
+
+	x = 0;
+	while (x <= WIN_WIDTH)
+	{
+		*pixel_info = ray_caster(game, x);
+		printf("Ray Length: %f\n", pixel_info->ray_len);
+		printf("Ray Length (perdpendicular): %f\n", pixel_info->distance);
+		//calc_wall_and_draw(game, x);
+		x = x + 1;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_game		*game;
-	t_column	column;
 
 	if (argc != 2)
 	{
@@ -51,11 +65,8 @@ int	main(int argc, char **argv)
 	init_player(game->player, game->data);
 	init_window(game);
 	printer(game);
-	column = ray_caster(game);
-	printf("Ray Length: %f\n", column.ray_len);
-	printf("Ray Length (perdpendicular): %f\n", column.distance);
-	//printf("texture: %c\n", column.texture);
-	init_window(game);
+	game->pixel_info = malloc(sizeof(t_column));
+	raycast(game, game->pixel_info);
 	ft_end_game(game);
 	return (0);
 }

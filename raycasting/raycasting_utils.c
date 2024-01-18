@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:26:55 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/18 15:36:34 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 17:09:19 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,12 @@ bool	wall_check(t_data *data, t_ray *ray, t_pos step, char crossing)
 	j = (int)step.y;
 	map = data->map;
 	align_coordinates(ray, &i, &j, crossing);
-	if (abs(j + 1) > data->rows && crossing == 'y')
+	if ((abs(j + 1) > data->rows || j < 0) && crossing == 'y')
 		return (true);
-	if (abs(i + 1) > data->max_cols && crossing == 'x')
+	if ((abs(i + 1) > data->max_cols || i < 0) && crossing == 'x')
 		return (true);
 	printf("from crossing %c:\ni: %d and j: %d\n", crossing, i, j);
-	if (map[j][i] == '1')
+	if (map[j][i] == WALL)
 		return (true);
 	return (false);
 }
