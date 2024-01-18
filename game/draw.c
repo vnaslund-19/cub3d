@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:12:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/15 16:13:23 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:11:34 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	draw_texture(t_game	*game, mlx_texture_t *texture)
 		x++;
 	}
 }
-/*
+
 void	draw_column(t_game *game, int x, int w_start, int w_end)
 {
 	int	y;
@@ -62,14 +62,10 @@ void	draw_column(t_game *game, int x, int w_start, int w_end)
 	y = 0;
 	while (y <= WIN_HEIGHT)
 	{
-		if (y < w_start)
-			mlx_put_pixel(game->image, x, y, game->textures->floor_color);
-		else if (y > w_end)
-			mlx_put_pixel(game->image, x, y, game->textures->floor_color);
-		else
+		if (y >= w_start && y <= w_end)
 			mlx_put_pixel(game->image, x, y,
-				get_texture_pixel_color(ray->texture_hit, // Part of some struct
-					(y - w_start) % 64, ray->tex_x_pos));
+				get_texture_pixel_color(game->pixel_info->texture,
+					(y - w_start) % (int)(game->pixel_info->texture->height), game->pixel_info->wall_hit));
 		y++;
 	}
 }
@@ -84,7 +80,7 @@ void	calc_wall_and_draw(t_game *game, int x)
 	int	w_start;
 	int	w_end;
 
-	w_height = WIN_HEIGHT / ray->length; // part of some struct
+	w_height = WIN_HEIGHT / game->pixel_info->distance; // part of some struct
 	w_start = (WIN_HEIGHT / 2) - (w_height / 2);
 	if (w_start < 0)
 		w_start = 0;
@@ -93,4 +89,3 @@ void	calc_wall_and_draw(t_game *game, int x)
 		w_end = WIN_HEIGHT;
 	draw_column(game, x, w_start, w_end);
 }
-*/

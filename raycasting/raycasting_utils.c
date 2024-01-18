@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:26:55 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/18 17:09:19 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 18:13:58 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,43 +26,43 @@ double	get_fractional_part(t_pos *hit_point)
 		return (y_fractional);
 }
 
-mlx_texture_t	get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray)
+mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray)
 {
 	//mlx_texture_t	texture;
 
 	if (ray->quadrant == 3)
 	{
 		if (hit_point->y == (int)hit_point->y)
-			return *(game->textures->south);
+			return (game->textures->south);
 		else
-			return *(game->textures->west);
+			return (game->textures->west);
 	}
 	else
 	{
 		if (hit_point->y == (int)hit_point->y)
-			return *(game->textures->south);
+			return (game->textures->south);
 		else
-			return *(game->textures->east);
+			return (game->textures->east);
 	}
 }
 
-mlx_texture_t	get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray)
+mlx_texture_t	*get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray)
 {
 	//mlx_texture_t	texture;
 
 	if (ray->quadrant == 1)
 	{
 		if (hit_point->y == (int)hit_point->y)
-			return *(game->textures->north);
+			return (game->textures->north);
 		else
-			return *(game->textures->east);
+			return (game->textures->east);
 	}
 	else if (ray->quadrant == 2)
 	{
 		if (hit_point->y == (int)hit_point->y)
-			return *(game->textures->north);
+			return (game->textures->north);
 		else
-			return *(game->textures->east);
+			return (game->textures->east);
 	}
 	else
 		return (get_rays_texture_extension(game, hit_point, ray));
@@ -93,9 +93,9 @@ bool	wall_check(t_data *data, t_ray *ray, t_pos step, char crossing)
 	j = (int)step.y;
 	map = data->map;
 	align_coordinates(ray, &i, &j, crossing);
-	if ((abs(j + 1) > data->rows || j < 0) && crossing == 'y')
+	if (abs(j + 1) > data->rows || j < 0)
 		return (true);
-	if ((abs(i + 1) > data->max_cols || i < 0) && crossing == 'x')
+	if (abs(i + 1) > data->max_cols || i < 0)
 		return (true);
 	printf("from crossing %c:\ni: %d and j: %d\n", crossing, i, j);
 	if (map[j][i] == WALL)

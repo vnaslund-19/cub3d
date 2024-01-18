@@ -1,7 +1,7 @@
 NO ./textures/wall.png
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+SO ./textures/eagle.png
+WE ./textures/bluestone.png
+EA ./textures/east.png
 
 F 255,255,255
 C 0,0,255

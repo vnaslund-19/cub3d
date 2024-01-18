@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 17:20:07 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 18:02:34 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,8 @@ typedef struct s_game
 	t_textures	*textures;
 	t_data		*data;
 	t_ray		*ray;
-	t_player	*player;
 	t_column	*pixel_info;
 }				t_game;
-
-typedef struct s_player
-{
-	double		x;
-	double		y;
-	double		view_angle;
-	double		x_viewdir; // vector which depend on view_angle
-	double		y_viewdir; // vector which depend on view_angle
-	double		ray_angle;
-	double		x_raydir;
-	double		y_raydir;
-}				t_player;
 
 typedef struct s_textures
 {
@@ -71,8 +58,6 @@ typedef struct s_textures
 	mlx_texture_t	*south;
 	mlx_texture_t	*west;
 	mlx_texture_t	*east;
-	int				floor_color;
-	int				ceiling_color;
 	int				floor_color;
 	int				ceiling_color;
 }				t_textures;
@@ -101,7 +86,7 @@ typedef struct s_player {
 
 typedef struct 		s_column {
 	double			wall_hit; // the x o ry coordinate when the ray touches a wall
-	mlx_texture_t	texture; // texture of the wall block the ray has touched
+	mlx_texture_t	*texture; // texture of the wall block the ray has touched
 	double			distance; // distance in perpendicular plane from x;y to x axis
 	double			ray_len; // ray length (needed for distance calculations)
 }					t_column;
@@ -180,9 +165,11 @@ void	move_right(t_game *game);
 void	rotate(t_game *game, int angle);
 
 // Raycasting
+void	raycast(t_game *game);
 void	init_player(t_game *game);
 void	draw_floor_and_ceiling(t_game *game);
 void	draw_texture(t_game	*game, mlx_texture_t *texture); //test function
+void	calc_wall_and_draw(t_game *game, int x);
 
 // Utils
 int		get_rgba(int r, int g, int b, int a);
@@ -194,15 +181,15 @@ void		init_ray(t_ray *ray, t_player *player, int x);
 void		determine_quadrant(t_ray *ray);
 t_pos		get_first_step(t_player *player, t_ray *ray, double angle, char crossing);
 t_pos		get_ray_pos(t_ray *ray, t_game *game, t_pos step, char crossing);
-t_column	ray_caster(t_game *game, int i);
-t_column	init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing);
+t_column	*ray_caster(t_game *game, int i);
+t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing);
 
 // ray casting utils
 double		get_absoulte(double ray_angle, double view_angle);
 bool		wall_check(t_data *data, t_ray *ray, t_pos step, char crossing);
 void		align_coordinates(t_ray *ray, int *i, int *j, char crossing);
-mlx_texture_t		get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray);
-mlx_texture_t		get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray);
+mlx_texture_t		*get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray);
+mlx_texture_t		*get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray);
 double		get_fractional_part(t_pos *hit_point);
 
 

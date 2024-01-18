@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:46:29 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/18 17:05:07 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 18:04:13 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,38 +120,42 @@ t_pos	get_ray_pos(t_ray *ray, t_game *game, t_pos step, char crossing)
 	return (ray_pos);
 }
 
-t_column	init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing)
+t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing)
 {
 	t_pos		ray_pos;
-	t_column	pixel;
+	t_column	*pixel;
 	double		delta;
 
 	delta = 0;
+	pixel = malloc(sizeof(t_column));
 	ray_pos = get_ray_pos(ray, game, step, crossing);
-	pixel.ray_len = INT_MAX;
-	pixel.distance = INT_MAX;
+	pixel->ray_len = INT_MAX;
+	pixel->distance = INT_MAX;
 	if (IS_IN_RANGE(ray_pos.x) && IS_IN_RANGE(ray_pos.y))
 	{
-		pixel.ray_len = sqrt(pow(game->player->x - ray_pos.x, 2)
+		pixel->ray_len = sqrt(pow(game->player->x - ray_pos.x, 2)
 			+ pow(game->player->y - ray_pos.y, 2));
 		delta = get_absoulte(ray->ray_angle, game->player->view_angle);
-		pixel.distance = pixel.ray_len * cos(delta);
-		pixel.texture = get_rays_texture(game, &ray_pos, ray);
-		pixel.wall_hit = get_fractional_part(&ray_pos);
+		pixel->distance = pixel->ray_len * cos(delta);
+		pixel->texture = malloc(sizeof(mlx_texture_t));
+		pixel->texture = get_rays_texture(game, &ray_pos, ray);
+		pixel->wall_hit = get_fractional_part(&ray_pos);
 	}
 	return (pixel);
 }
 
-t_column	ray_caster(t_game *game, int x)
+t_column	*ray_caster(t_game *game, int x)
 {
-	t_column	x_col;
-	t_column	y_col;
+	t_column	*x_col;
+	t_column	*y_col;
 	t_ray		ray;
 	
+	x_col = NULL;
+	y_col = NULL;
 	init_ray(&ray, game->player, x);
 	x_col = init_pixel_column(&ray, game, ray.horizontal, 'x');
 	y_col = init_pixel_column(&ray, game, ray.vertical, 'y');
-	if (x_col.distance > y_col.distance)
+	if (x_col->distance > y_col->distance)
 		return (y_col);
 	else
 		return (x_col);

@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 17:15:37 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 17:24:48 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,6 @@ void	init_data(t_game *game)
 	game->data->we_path = NULL;
 	game->data->ea_path = NULL;
 	game->textures = NULL;
-}
-
-void	raycast(t_game *game, t_column *pixel_info)
-{
-	int	x;
-
-	x = 0;
-	while (x <= WIN_WIDTH)
-	{
-		*pixel_info = ray_caster(game, x);
-		printf("Ray Length: %f\n", pixel_info->ray_len);
-		printf("Ray Length (perdpendicular): %f\n", pixel_info->distance);
-		//calc_wall_and_draw(game, x);
-		x = x + 1;
-	}
 }
 
 int	main(int argc, char **argv)

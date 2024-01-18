@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:55:06 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/15 16:14:02 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:29:13 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	loop_hook(void	*param)
 	t_game	*game;
 
 	game = param;
-	//raycast(game);
+	raycast(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W)
 		|| mlx_is_key_down(game->mlx, MLX_KEY_UP))
 		move_forward(game);
