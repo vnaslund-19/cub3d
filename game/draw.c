@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
+/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:12:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 18:11:34 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 18:27:59 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,18 @@ void	draw_column(t_game *game, int x, int w_start, int w_end)
 {
 	int	y;
 
-	y = 0;
-	while (y <= WIN_HEIGHT)
+	y = 1;
+	while (y < WIN_HEIGHT)
 	{
-		if (y >= w_start && y <= w_end)
+		if (y < w_start)
+			mlx_put_pixel(game->image, x, y, game->textures->ceiling_color);
+		else if (y > w_end)
+			mlx_put_pixel(game->image, x, y, game->textures->floor_color);
+		else
 			mlx_put_pixel(game->image, x, y,
 				get_texture_pixel_color(game->pixel_info->texture,
-					(y - w_start) % (int)(game->pixel_info->texture->height), game->pixel_info->wall_hit));
+					(y - w_start) % (int)(game->pixel_info->texture->height),
+					game->pixel_info->wall_hit));
 		y++;
 	}
 }
