@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 15:23:03 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 15:53:09 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 	debug_print_mapinfo(game->data);
 	game->player = malloc(sizeof(t_player));
 	init_player(game->player, game->data);
+	init_window(game);
 	printer(game);
 	column = ray_caster(game);
 	printf("Ray Length: %f\n", column.ray_len);

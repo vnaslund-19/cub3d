@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 15:41:33 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 15:50:03 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_column		t_column;
 
 typedef struct s_game
 {
+	mlx_t		*mlx;
 	t_textures	*textures;
 	t_data		*data;
 	t_ray		*ray;
@@ -53,6 +54,8 @@ typedef struct s_textures
 	mlx_texture_t	*south;
 	mlx_texture_t	*west;
 	mlx_texture_t	*east;
+	int				floor_color;
+	int				ceiling_color;
 }				t_textures;
 
 typedef struct s_pos {
@@ -169,5 +172,7 @@ void		align_coordinates(t_ray *ray, int *i, int *j, char crossing);
 mlx_texture_t		get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray);
 mlx_texture_t		get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray);
 double		get_fractional_part(t_pos *hit_point);
+
+
 
 #endif
