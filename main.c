@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 13:27:43 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 15:23:03 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	column = ray_caster(game);
 	printf("Ray Length: %f\n", column.ray_len);
 	printf("Ray Length (perdpendicular): %f\n", column.distance);
-	printf("texture: %c\n", column.texture);
+	//printf("texture: %c\n", column.texture);
 	init_window(game);
 	ft_end_game(game);
 	return (0);

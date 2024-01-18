@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 14:15:24 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 15:41:33 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_player {
 
 typedef struct 		s_column {
 	double			wall_hit; // the x o ry coordinate when the ray touches a wall
-	char			texture; // texture of the wall block the ray has touched
+	mlx_texture_t	texture; // texture of the wall block the ray has touched
 	double			distance; // distance in perpendicular plane from x;y to x axis
 	double			ray_len; // ray length (needed for distance calculations)
 }					t_column;
@@ -166,8 +166,8 @@ t_column	init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing);
 double		get_absoulte(double ray_angle, double view_angle);
 bool		wall_check(t_data *data, t_ray *ray, t_pos step, char crossing);
 void		align_coordinates(t_ray *ray, int *i, int *j, char crossing);
-char		get_rays_texture_extension(t_pos *hit_point, t_ray *ray);
-char		get_rays_texture(t_pos *hit_point, t_ray *ray);
-double		get_fractional_part(t_pos *hit_point, t_ray *ray);
+mlx_texture_t		get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray);
+mlx_texture_t		get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray);
+double		get_fractional_part(t_pos *hit_point);
 
 #endif

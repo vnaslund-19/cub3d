@@ -6,13 +6,13 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:26:55 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/18 14:14:44 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 15:36:34 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-double	get_fractional_part(t_pos *hit_point, t_ray *ray)
+double	get_fractional_part(t_pos *hit_point)
 {
 	double	x_fractional;
 	double	y_fractional;
@@ -26,48 +26,46 @@ double	get_fractional_part(t_pos *hit_point, t_ray *ray)
 		return (y_fractional);
 }
 
-char	get_rays_texture_extension(t_pos *hit_point, t_ray *ray)
+mlx_texture_t	get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray)
 {
-	char	texture;
+	//mlx_texture_t	texture;
 
 	if (ray->quadrant == 3)
 	{
 		if (hit_point->y == (int)hit_point->y)
-			texture = 's';
+			return *(game->textures->south);
 		else
-			texture = 'w';
+			return *(game->textures->west);
 	}
 	else
 	{
 		if (hit_point->y == (int)hit_point->y)
-			texture ='s';
+			return *(game->textures->south);
 		else
-			texture = 'e';
+			return *(game->textures->east);
 	}
-	return (texture);
 }
 
-char	get_rays_texture(t_pos *hit_point, t_ray *ray)
+mlx_texture_t	get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray)
 {
-	char	texture;
+	//mlx_texture_t	texture;
 
 	if (ray->quadrant == 1)
 	{
 		if (hit_point->y == (int)hit_point->y)
-			texture = 'n';
+			return *(game->textures->north);
 		else
-			texture = 'e';
+			return *(game->textures->east);
 	}
 	else if (ray->quadrant == 2)
 	{
 		if (hit_point->y == (int)hit_point->y)
-			texture = 'n';
+			return *(game->textures->north);
 		else
-			texture = 'w';
+			return *(game->textures->east);
 	}
 	else
-		texture = get_rays_texture_extension(hit_point, ray);
-	return (texture);
+		return (get_rays_texture_extension(game, hit_point, ray));
 }
 
 double	get_absoulte(double ray_angle, double view_angle)

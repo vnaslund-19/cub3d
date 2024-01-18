@@ -6,15 +6,15 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:46:29 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/18 14:08:15 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 15:40:13 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init_ray(t_ray *ray, t_player *player, int i)
+void	init_ray(t_ray *ray, t_player *player)
 {
-	ray->ray_angle = get_ray_angle(player->view_angle, i);
+	//ray->ray_angle = get_ray_angle(player->view_angle, i);
 	ray->ray_angle = player->view_angle;
 	ray->sign.x = 1;
 	ray->sign.y = 1;
@@ -37,14 +37,14 @@ void	init_ray(t_ray *ray, t_player *player, int i)
 	printf("steps in horizontal dir:   y:%f    x:%f\n", ray->horizontal.y, ray->horizontal.x);
 }
 
-double	get_ray_angle(double angle, int i)
+/* double	get_ray_angle(double angle, int i)
 {
 	double	ray_angle;
 
 	ray_angle = angle;
 	return (ray_angle);
 }
-
+ */
 void	determine_quadrant(t_ray *ray)
 {
 	if (ray->sign.x > 0 && ray->sign.y < 0)
@@ -127,13 +127,13 @@ t_column	init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing)
 			+ pow(game->player->y - ray_pos.y, 2));
 		delta = get_absoulte(ray->ray_angle, game->player->view_angle);
 		pixel.distance = pixel.ray_len * cos(delta);
-		pixel.texture = get_rays_texture(&ray_pos, ray);
-		pixel.wall_hit = get_fractional_part(&ray_pos, ray);
+		pixel.texture = get_rays_texture(game, &ray_pos, ray);
+		pixel.wall_hit = get_fractional_part(&ray_pos);
 	}
 	return (pixel);
 }
 
-t_column	ray_caster(t_game *game, int i)
+t_column	ray_caster(t_game *game)
 {
 	t_column	x_col;
 	t_column	y_col;

@@ -6,7 +6,7 @@
 #    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 16:46:17 by vnaslund          #+#    #+#              #
-#    Updated: 2024/01/16 11:27:48 by gkrusta          ###   ########.fr        #
+#    Updated: 2024/01/18 15:38:52 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS    = main.c parsing/read_file.c parsing/playable.c parsing/file_check.c \
           parsing/fill_map.c parsing/explore.c \
           memory_handling/exit_handler.c  memory_handling/end_game.c debug.c \
 		  game/init_game.c \
-		  raycasting/raycasting_utils.c raycasting/angles.c
+		  raycasting/raycasting_utils.c raycasting/angles.c raycasting/init.c
 
 OBJ_DIR = obj/
 OBJS    = $(SRCS:%.c=$(OBJ_DIR)%.o)
