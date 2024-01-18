@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/17 17:01:58 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/18 14:15:24 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ typedef struct s_player {
 	double		y_viewdir; // vector which depend on view_angle
 }				t_player;
 
-typedef struct s_column {
-	t_pos		wall_hit; // the x;y coordinate when the ray touches a wall
-	double		distance; // distance in coordinate plane from x;y to x axis
-	char		touched_wall; // side of the wall block the ray has touched
-	double		ray_len;
-}				t_column;
+typedef struct 		s_column {
+	double			wall_hit; // the x o ry coordinate when the ray touches a wall
+	char			texture; // texture of the wall block the ray has touched
+	double			distance; // distance in perpendicular plane from x;y to x axis
+	double			ray_len; // ray length (needed for distance calculations)
+}					t_column;
 
 typedef struct s_data
 {
@@ -149,20 +149,25 @@ void	ft_end_game(t_game *game);
 void	init_window(t_game *game);
 void	load_textures(t_game *game);
 
-//raycast
-double	get_ray_angle(double angle);
-void	init_ray(t_ray *ray, t_player *player);
-void	determine_quadrant(t_ray *ray);
-t_pos	get_first_step(t_player *player, t_ray *ray, double angle, char crossing);
-t_column	get_ray_length(t_ray *ray, t_game *game, t_pos step, char crossing);
-t_column	ray_caster(t_game *game);
-void	init_player(t_player *player, t_data *data);
+// init player
+void		init_player(t_player *player, t_data *data);
+void		init_player_extension(t_player *player, t_data *data);
 
+//raycast
+double		get_ray_angle(double angle);
+void		init_ray(t_ray *ray, t_player *player);
+void		determine_quadrant(t_ray *ray);
+t_pos		get_first_step(t_player *player, t_ray *ray, double angle, char crossing);
+t_pos		get_ray_pos(t_ray *ray, t_game *game, t_pos step, char crossing);
+t_column	ray_caster(t_game *game);
+t_column	init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing);
 
 // ray casting utils
-double	get_absoulte(double ray_angle, double view_angle);
-bool	wall_check(t_data *data, t_ray *ray, t_pos step, char crossing);
-void	align_coordinates(t_ray *ray, int *i, int *j, char crossing);
-
+double		get_absoulte(double ray_angle, double view_angle);
+bool		wall_check(t_data *data, t_ray *ray, t_pos step, char crossing);
+void		align_coordinates(t_ray *ray, int *i, int *j, char crossing);
+char		get_rays_texture_extension(t_pos *hit_point, t_ray *ray);
+char		get_rays_texture(t_pos *hit_point, t_ray *ray);
+double		get_fractional_part(t_pos *hit_point, t_ray *ray);
 
 #endif
