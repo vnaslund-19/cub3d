@@ -6,23 +6,27 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 14:34:22 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/19 16:48:14 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:24:41 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	free_textures(t_textures *textures)
+void	ft_end_game(t_game *game)
 {
-	if (textures->north)
-		mlx_delete_texture(textures->north);
-	if (textures->south)
-		mlx_delete_texture(textures->south);
-	if (textures->west)
-		mlx_delete_texture(textures->west);
-	if (textures->east)
-		mlx_delete_texture(textures->east);
-	free(textures);
+	ft_free_array((void **)game->data->map);
+	free(game->data->no_path);
+	free(game->data->so_path);
+	free(game->data->we_path);
+	free(game->data->ea_path);
+	free(game->data);
+	mlx_delete_texture(game->textures->north);
+	mlx_delete_texture(game->textures->south);
+	mlx_delete_texture(game->textures->west);
+	mlx_delete_texture(game->textures->east);
+	free(game->textures);
+	free(game->player);
+	free(game);
 }
 
 void	exit_handler(char *msg, t_game *game)
@@ -60,4 +64,17 @@ void	ft_free_array(void **array)
 		free(array[i++]);
 	free(array);
 	array = NULL;
+}
+
+void	free_textures(t_textures *textures)
+{
+	if (textures->north)
+		mlx_delete_texture(textures->north);
+	if (textures->south)
+		mlx_delete_texture(textures->south);
+	if (textures->west)
+		mlx_delete_texture(textures->west);
+	if (textures->east)
+		mlx_delete_texture(textures->east);
+	free(textures);
 }
