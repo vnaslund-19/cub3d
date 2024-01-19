@@ -6,11 +6,24 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 14:34:22 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/11 16:05:24 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:48:14 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	free_textures(t_textures *textures)
+{
+	if (textures->north)
+		mlx_delete_texture(textures->north);
+	if (textures->south)
+		mlx_delete_texture(textures->south);
+	if (textures->west)
+		mlx_delete_texture(textures->west);
+	if (textures->east)
+		mlx_delete_texture(textures->east);
+	free(textures);
+}
 
 void	exit_handler(char *msg, t_game *game)
 {
@@ -27,6 +40,10 @@ void	exit_handler(char *msg, t_game *game)
 		free(game->data->we_path);
 	if (game->data->ea_path)
 		free(game->data->ea_path);
+	if (game->textures)
+		free_textures(game->textures);
+	if (game->player)
+		free(game->player);
 	free(game->data);
 	free(game);
 	exit(1);
