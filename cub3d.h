@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/19 13:25:35 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/19 14:04:03 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,22 +175,22 @@ void	calc_wall_and_draw(t_game *game, int x);
 int		get_rgba(int r, int g, int b, int a);
 int		get_texture_pixel_color(mlx_texture_t *texture, int y, int x);
 
-//raycast
-double		get_ray_angle(double angle, double x);
-void		init_ray(t_ray *ray, t_player *player, int x);
-void		determine_quadrant(t_ray *ray);
+//raycasting each column
 t_pos		get_first_step(t_player *player, t_ray *ray, double angle, char crossing);
 t_pos		get_ray_pos(t_ray *ray, t_game *game, t_pos step, char crossing);
 t_column	*ray_caster(t_game *game, int i);
 t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing);
 
 // ray casting utils
-double		get_absoulte(double ray_angle, double view_angle);
-bool		wall_check(t_data *data, t_ray *ray, t_pos step, char crossing);
-void		align_coordinates(t_ray *ray, int *i, int *j, char crossing);
-mlx_texture_t		*get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray);
-mlx_texture_t		*get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray);
-double		get_fractional_part(t_pos *hit_point);
+double			get_fractional_part(t_pos *hit_point);
+mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray);
+mlx_texture_t	*get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray);
+double			get_absoulte(double ray_angle, double view_angle);
+bool			wall_check(t_data *data, t_ray *ray, t_pos step, char crossing);
 
+// getting rays angle and its quadrant
+void		init_ray(t_ray *ray, t_player *player, int x);
+double		get_ray_angle(double angle, double x);
+void		determine_quadrant(t_ray *ray);
 
 #endif

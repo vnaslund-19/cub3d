@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:26:55 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/19 13:13:17 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/19 14:04:32 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ double	get_fractional_part(t_pos *hit_point)
 
 mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray)
 {
-	//mlx_texture_t	texture;
-
 	if (ray->quadrant == 3)
 	{
 		if (hit_point->y == (int)hit_point->y)
@@ -48,8 +46,6 @@ mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray 
 
 mlx_texture_t	*get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray)
 {
-	//mlx_texture_t	texture;
-
 	if (ray->quadrant == 1)
 	{
 		if (hit_point->y == (int)hit_point->y)
@@ -73,16 +69,6 @@ double	get_absoulte(double ray_angle, double view_angle)
 	return (fabs(ray_angle - view_angle));
 }
 
-void	align_coordinates(t_ray *ray, int *i, int *j, char crossing)
-{
-	if (crossing == 'y' && ray->sign.x == -1)
-		--(*i);
-	else if (crossing == 'x' && ray->sign.y == -1)
-		--(*j);
-	else
-		return ;
-}
-
 bool	wall_check(t_data *data, t_ray *ray, t_pos step, char crossing)
 {
 	int		i;
@@ -92,7 +78,10 @@ bool	wall_check(t_data *data, t_ray *ray, t_pos step, char crossing)
 	i = (int)step.x;
 	j = (int)step.y;
 	map = data->map;
-	align_coordinates(ray, &i, &j, crossing);
+	if (crossing == 'y' && ray->sign.x == -1)
+		i--;
+	else if (crossing == 'x' && ray->sign.y == -1)
+		j--;
 	if (abs(j + 1) > data->rows || j < 0)
 		return (true);
 	if (abs(i + 1) > data->max_cols || i < 0)
