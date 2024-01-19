@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:26:55 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/19 16:14:35 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:54:59 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ double	get_fractional_part(t_pos *hit_point)
 		return (y_fractional);
 }
 
-mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray)
+mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point,
+											t_ray *ray)
 {
 	if (ray->quadrant == 3)
 	{

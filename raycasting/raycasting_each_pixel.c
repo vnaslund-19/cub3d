@@ -6,13 +6,14 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:56:50 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/19 16:14:45 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:54:24 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_pos	get_first_step(t_player *player, t_ray *ray, double angle, char crossing)
+t_pos	get_first_step(t_player *player, t_ray *ray, double angle,
+						char crossing)
 {
 	t_pos	first_step;
 	double	len;
@@ -51,7 +52,8 @@ t_pos	get_ray_pos(t_ray *ray, t_game *game, t_pos step, char crossing)
 	return (ray_pos);
 }
 
-t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing)
+t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step,
+								char crossing)
 {
 	t_pos		ray_pos;
 	t_column	*pixel;

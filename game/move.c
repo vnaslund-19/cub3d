@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:13:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/12 17:55:27 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:58:10 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	move_player(t_game *game, double newx, double newy)
 		&& game->data->map[(int)(newy - COLLISION_MARGIN)]
 		[(int)game->player->x] != WALL)
 		game->player->y = newy;
+	raycast(game);
 }
 
 void	move_forward(t_game *game)
