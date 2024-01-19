@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/19 17:02:33 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:17:48 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,14 @@ typedef struct s_textures
 	int				ceiling_color;
 }				t_textures;
 
-typedef struct s_pos {
+typedef struct s_pos
+{
 	double		x;
 	double		y;
 }				t_pos;
 
-typedef struct s_ray {
+typedef struct s_ray
+{
 	double		ray_angle;
 	double		d_angle;
 	int			quadrant;
@@ -76,7 +78,8 @@ typedef struct s_ray {
 	t_pos		vertical;
 }				t_ray;
 
-typedef struct s_player {
+typedef struct s_player
+{
 	double		x;
 	double		y;
 	double		view_angle;
@@ -84,10 +87,11 @@ typedef struct s_player {
 	double		y_viewdir; // vector which depend on view_angle
 }				t_player;
 
-typedef struct 		s_column {
-	double			wall_hit; // the x o ry coordinate when the ray touches a wall
+typedef struct s_column
+{
+	double			wall_hit; // the x or y coordinate when the ray hits a wall
 	mlx_texture_t	*texture; // texture of the wall block the ray has touched
-	double			distance; // distance in perpendicular plane from x;y to x axis
+	double			distance; // distance in perpendicular plane
 	double			ray_len; // ray length (needed for distance calculations)
 }					t_column;
 
@@ -116,81 +120,79 @@ typedef struct s_data
 	int		first_line_of_map;
 }			t_data;
 
-void	ft_read_file(t_game *game, char **argv);
-int		ft_allocate_lines(t_game *game, char **argv);
+void			ft_read_file(t_game *game, char **argv);
+int				ft_allocate_lines(t_game *game, char **argv);
 
 // Recursively check each line to:
 // Find info for floor & ceiling color, & NO, SO, WE & EA textures
 // Find the first line of the map
-void	ft_file_check(t_game *game, char **file, int i);
-int		find_floor_or_ceil(t_data *data, char **file, int i);
-int		find_no_or_so(t_game *game, char **file, int i);
-int		find_we_or_ea(t_game *game, char **file, int i);
-int		is_first_line_of_map(char *str);
+void			ft_file_check(t_game *game, char **file, int i);
+int				find_floor_or_ceil(t_data *data, char **file, int i);
+int				find_no_or_so(t_game *game, char **file, int i);
+int				find_we_or_ea(t_game *game, char **file, int i);
+int				is_first_line_of_map(char *str);
 
-void	ft_playable_check(t_game *game, char **map);
-void	revise_data(t_game *game);
+void			ft_playable_check(t_game *game, char **map);
+void			revise_data(t_game *game);
 
 // Check that there is only one player character and no invalid characters
-void	player_config_check(t_game *game, char **map);
+void			player_config_check(t_game *game, char **map);
 
 // Fill map with spaces to make it a rectangle to prepare for DFS algo
-void	ft_fill_map(t_game *game);
-void	add_spaces(t_game *game, char **map, int max_cols);
+void			ft_fill_map(t_game *game);
+void			add_spaces(t_game *game, char **map, int max_cols);
 
 // Depth-First Search algorithm 
 // Checks if all possible paths for the player are valid
-void	init_explore(t_game *game, int ***visited);
-void	explore(t_game *game, int x, int y, int **visited);
-
-// Debugging
-void	debug_print_mapinfo(t_data *data);
-void	debug_print_visited(int **visited, int rows, int cols);
+void			init_explore(t_game *game, int ***visited);
+void			explore(t_game *game, int x, int y, int **visited);
 
 // Exit and memory handling
-void	exit_handler(char *msg, t_game *game);
-void	ft_free_array(void **matrix);
-void	ft_end_game(t_game *game);
+void			exit_handler(char *msg, t_game *game);
+void			ft_free_array(void **matrix);
+void			ft_end_game(t_game *game);
 
 // MLX
-void	init_window(t_game *game);
-void	load_textures(t_game *game);
+void			init_window(t_game *game);
+void			load_textures(t_game *game);
 
-void	key_hook(mlx_key_data_t keydata, void *param);
-void	loop_hook(void	*param);
-void	move_forward(t_game *game);
-void	move_backward(t_game *game);
-void	move_left(t_game *game);
-void	move_right(t_game *game);
-void	rotate(t_game *game, int angle);
+void			key_hook(mlx_key_data_t keydata, void *param);
+void			loop_hook(void	*param);
+void			move_forward(t_game *game);
+void			move_backward(t_game *game);
+void			move_left(t_game *game);
+void			move_right(t_game *game);
+void			rotate(t_game *game, int angle);
 
 // Raycasting
-void	raycast(t_game *game);
-void	init_player(t_game *game);
-void	draw_floor_and_ceiling(t_game *game);
-void	draw_texture(t_game	*game, mlx_texture_t *texture); //test function
-void	calc_wall_and_draw(t_game *game, int x);
-
-// Utils
-int		get_rgba(int r, int g, int b, int a);
-int		get_texture_pixel_color(mlx_texture_t *texture, int y, int x);
+void			raycast(t_game *game);
+void			init_player(t_game *game);
 
 //raycasting each column
-t_pos		get_first_step(t_player *player, t_ray *ray, double angle, char crossing);
-t_pos		get_ray_pos(t_ray *ray, t_game *game, t_pos step, char crossing);
-t_column	*ray_caster(t_game *game, int i);
-t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing);
+t_pos			get_first_step(t_player *player, t_ray *ray, double angle,
+					char crossing);
+t_pos			get_ray_pos(t_ray *ray, t_game *game, t_pos step,
+					char crossing);
+t_column		*ray_caster(t_game *game, int i);
+t_column		*init_pixel_column(t_ray *ray, t_game *game, t_pos step,
+					char crossing);
 
 // ray casting utils
 double			get_fractional_part(t_pos *hit_point);
-mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray);
+mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point,
+					t_ray *ray);
 mlx_texture_t	*get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray);
 double			get_absoulte(double ray_angle, double view_angle);
 bool			wall_check(t_data *data, t_ray *ray, t_pos step, char crossing);
 
 // getting rays angle and its quadrant
-void		init_ray(t_ray *ray, t_player *player, int x);
-double		get_ray_angle(double angle, double x);
-void		determine_quadrant(t_ray *ray);
+void			init_ray(t_ray *ray, t_player *player, int x);
+double			get_ray_angle(double angle, double x);
+void			determine_quadrant(t_ray *ray);
+
+// Drawing
+void			calc_wall_and_draw(t_game *game, int x);
+int				get_texture_pixel_color(mlx_texture_t *texture, int y, int x);
+int				get_rgba(int r, int g, int b, int a);
 
 #endif
