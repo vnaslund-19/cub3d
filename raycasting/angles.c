@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:46:29 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/18 18:04:13 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/19 11:26:18 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ double	get_ray_angle(double angle, double x)
 		return (angle + ray_angle);
 	else
 		return (angle - ray_angle); */
-	
 	ray_angle = angle + FOV/2 - ((x / WIN_WIDTH) * FOV);
 	printf("ray angle is: %f\n", ray_angle);
 	return (ray_angle);
