@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:05:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/19 13:52:05 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/19 15:35:30 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ void	init_window(t_game *game)
 	mlx_set_window_limit(game->mlx, MIN_WIDTH, MIN_HEIGHT,
 		WIN_WIDTH, WIN_HEIGHT);
 	game->image = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
-	raycast(game);
 	mlx_image_to_window(game->mlx, game->image, 0, 0);
-	draw_floor_and_ceiling(game);
+	raycast(game);
 	mlx_key_hook(game->mlx, key_hook, game);
 	mlx_loop_hook(game->mlx, loop_hook, game);
 	mlx_loop(game->mlx);

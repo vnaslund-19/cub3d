@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/19 14:04:03 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/19 15:38:03 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define FOV (M_PI / 2)
 # define MOVE_SPEED 0.78
 # define ROTATION_SPEED 0.78
-# define COLLISION_MARGIN 0.15
+# define COLLISION_MARGIN 0.25
 # define IS_IN_RANGE(value) ((value) >= INT_MIN && (value) <= INT_MAX)
 
 typedef struct s_data		t_data;
