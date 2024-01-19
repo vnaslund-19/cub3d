@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 17:24:48 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/19 13:37:03 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,16 @@ void	init_data(t_game *game)
 	game->textures = NULL;
 }
 
+void	ft_leaks(void)
+{
+	system("leaks -q cub3d");
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	*game;
 
+	atexit(ft_leaks); // this goes into main 
 	if (argc != 2)
 	{
 		printf("Exactly 1 map should be passed as argument");

@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:46:29 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/19 11:26:18 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/19 13:25:20 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing)
 			+ pow(game->player->y - ray_pos.y, 2));
 		delta = get_absoulte(ray->ray_angle, game->player->view_angle);
 		pixel->distance = pixel->ray_len * cos(delta);
-		pixel->texture = malloc(sizeof(mlx_texture_t));
 		pixel->texture = get_rays_texture(game, &ray_pos, ray);
 		pixel->wall_hit = get_fractional_part(&ray_pos);
 	}
@@ -155,7 +154,13 @@ t_column	*ray_caster(t_game *game, int x)
 	x_col = init_pixel_column(&ray, game, ray.horizontal, 'x');
 	y_col = init_pixel_column(&ray, game, ray.vertical, 'y');
 	if (x_col->distance > y_col->distance)
+	{
+		free(x_col);
 		return (y_col);
+	}
 	else
+	{
+		free(y_col);
 		return (x_col);
+	}
 }

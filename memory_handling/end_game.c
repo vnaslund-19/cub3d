@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 16:30:59 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 17:23:14 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/19 13:30:14 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void	ft_end_game(t_game *game)
 	mlx_delete_texture(game->textures->west);
 	mlx_delete_texture(game->textures->east);
 	free(game->textures);
+	free(game->player);
 	free(game);
 }

@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:26:55 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/18 18:13:58 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/19 13:13:17 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ mlx_texture_t	*get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray)
 		if (hit_point->y == (int)hit_point->y)
 			return (game->textures->north);
 		else
-			return (game->textures->east);
+			return (game->textures->west);
 	}
 	else
 		return (get_rays_texture_extension(game, hit_point, ray));
