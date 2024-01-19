@@ -28,8 +28,6 @@ double	get_fractional_part(t_pos *hit_point)
 
 mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray)
 {
-	//mlx_texture_t	texture;
-
 	if (ray->quadrant == 3)
 	{
 		if (hit_point->y == (int)hit_point->y)
@@ -48,8 +46,6 @@ mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray 
 
 mlx_texture_t	*get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray)
 {
-	//mlx_texture_t	texture;
-
 	if (ray->quadrant == 1)
 	{
 		if (hit_point->y == (int)hit_point->y)
@@ -97,7 +93,6 @@ bool	wall_check(t_data *data, t_ray *ray, t_pos step, char crossing)
 		return (true);
 	if (abs(i + 1) > data->max_cols || i < 0)
 		return (true);
-	printf("from crossing %c:\ni: %d and j: %d\n", crossing, i, j);
 	if (map[j][i] == WALL)
 		return (true);
 	return (false);

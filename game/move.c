@@ -34,15 +34,6 @@ void	move_forward(t_game *game)
 	newx = game->player->x + (game->player->x_viewdir * MOVE_SPEED);
 	newy = game->player->y + (game->player->y_viewdir * MOVE_SPEED);
 	move_player(game, newx, newy);
-	// Test current values
-	if (game->player->x < 0 || game->player->x > game->data->max_cols
-		|| game->player->y > game->data->rows || game->player->y < 0
-		|| game->player->view_angle > (M_PI * 2) || game->player->view_angle < 0
-		|| game->player->y_viewdir < -1 || game->player->y_viewdir > 1
-		|| game->player->x_viewdir < -1 || game->player->x_viewdir > 1)
-		printf("ERROR\n");
-	printf("Player position(y,x): %f,%f\nView angle: %f\ny_viewdir: %f, x_viewdir: %f\n",
-		game->player->y, game->player->x, game->player->view_angle, game->player->y_viewdir, game->player->x_viewdir);
 }
 
 void	move_backward(t_game *game)
