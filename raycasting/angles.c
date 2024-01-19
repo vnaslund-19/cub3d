@@ -116,7 +116,7 @@ t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing)
 				+ pow(game->player->y - ray_pos.y, 2));
 		delta = get_absoulte(ray->ray_angle, game->player->view_angle);
 		pixel->distance = pixel->ray_len * cos(delta);
-		pixel->texture = malloc(sizeof(mlx_texture_t));
+		pixel->texture = NULL;
 		pixel->texture = get_rays_texture(game, &ray_pos, ray);
 		pixel->wall_hit = get_fractional_part(&ray_pos);
 	}
