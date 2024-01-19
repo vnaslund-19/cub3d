@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:01:03 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/16 12:34:41 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:08:29 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void	ft_fill_map(t_game *game)
 	j = 0;
 	while (game->data->file[i])
 		game->data->map[j++] = ft_strdup(game->data->file[i++]);
-	ft_free_array((void **)game->data->file);
-	game->data->allocated_file = false;
 	game->data->map[j] = NULL;
 	game->data->rows = j;
 	max_len = 0;

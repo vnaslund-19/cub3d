@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:05:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/18 15:34:12 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:11:52 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,4 @@ void	init_player(t_game *game)
 	game->player->x = (double)game->data->p_position[0] + 0.5;
 	game->player->y = (double)game->data->p_position[1] + 0.5;
 	set_start_angles(game);
-	game->player->ray_angle = game->player->view_angle;
-	game->player->x_raydir = game->player->x_viewdir;
-	game->player->y_raydir = game->player->y_viewdir;
 }

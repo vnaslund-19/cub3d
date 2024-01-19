@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+         #
+#    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 16:46:17 by vnaslund          #+#    #+#              #
-#    Updated: 2024/01/15 12:20:09 by vnaslund         ###   ########.fr        #
+#    Updated: 2024/01/18 17:33:11 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3d
-CFLAGS  = -Wall -Wextra -Werror -g
+CFLAGS  = -Wall -Wextra -Werror -g -fsanitize=address
+LDFLAGS = -fsanitize=address
 LIBMLX  = ./MLX42
 LIBMLX_A = $(LIBMLX)/build/libmlx42.a
 LIBFT   = ./libft
@@ -25,7 +26,8 @@ SRCS    = main.c parsing/read_file.c parsing/playable.c parsing/file_check.c \
           parsing/fill_map.c parsing/explore.c \
           memory_handling/exit_handler.c  memory_handling/end_game.c debug.c \
 		  game/init_game.c game/hooks.c game/move.c game/rotate.c game/utils.c \
-		  game/draw.c
+		  game/draw.c game/raycast.c \
+		  raycasting/raycasting_utils.c raycasting/angles.c
 
 OBJ_DIR = obj/
 OBJS    = $(SRCS:%.c=$(OBJ_DIR)%.o)
@@ -50,11 +52,11 @@ $(LIBMLX_A):
 $(OBJ_DIR)%.o: %.c
 	@mkdir -p $(@D)
 	@echo "Compiling $<..."
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+	@$(CC) $(CFLAGS) $(LDFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
 	@echo "Linking $@..."
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	@$(CC) $(LDFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 	@echo "$@ compilation complete."
 
 clean:

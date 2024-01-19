@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 16:22:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2023/12/13 16:24:42 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:39:12 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	debug_print_visited(int **visited, int rows, int cols)
 	for (int i = 0; i < rows; i++)
 	{
     	for (int j = 0; j < cols; j++)
-			printf("%d", visited[i][j]);
+			printf("789%d", visited[i][j]);
 		printf("\n");
 	}
 }
