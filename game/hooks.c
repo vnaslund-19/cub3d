@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:55:06 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/15 16:14:02 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:47:38 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,36 @@ void	loop_hook(void	*param)
 	t_game	*game;
 
 	game = param;
-	//raycast(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W)
 		|| mlx_is_key_down(game->mlx, MLX_KEY_UP))
+	{
 		move_forward(game);
+		raycast(game);
+	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S)
 		|| mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
+	{
 		move_backward(game);
+		raycast(game);
+	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+	{
 		move_left(game);
+		raycast(game);
+	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+	{
 		move_right(game);
+		raycast(game);
+	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+	{
 		rotate(game, 1);
+		raycast(game);
+	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
+	{
 		rotate(game, -1);
+		raycast(game);
+	}
 }

@@ -6,12 +6,13 @@
 #    By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 16:46:17 by vnaslund          #+#    #+#              #
-#    Updated: 2024/01/15 12:20:09 by vnaslund         ###   ########.fr        #
+#    Updated: 2024/01/19 16:16:34 by vnaslund         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3d
 CFLAGS  = -Wall -Wextra -Werror -g
+
 LIBMLX  = ./MLX42
 LIBMLX_A = $(LIBMLX)/build/libmlx42.a
 LIBFT   = ./libft
@@ -25,7 +26,8 @@ SRCS    = main.c parsing/read_file.c parsing/playable.c parsing/file_check.c \
           parsing/fill_map.c parsing/explore.c \
           memory_handling/exit_handler.c  memory_handling/end_game.c debug.c \
 		  game/init_game.c game/hooks.c game/move.c game/rotate.c game/utils.c \
-		  game/draw.c
+		  game/draw.c game/raycast.c \
+		  raycasting/raycasting_utils.c raycasting/angles.c raycasting/raycasting_each_pixel.c
 
 OBJ_DIR = obj/
 OBJS    = $(SRCS:%.c=$(OBJ_DIR)%.o)
