@@ -28,11 +28,9 @@
 # define MIN_WIDTH 500
 # define MIN_HEIGHT 500
 
-# define FOV (M_PI / 2)
-# define MOVE_SPEED 0.05
-# define ROTATION_SPEED 0.05
+# define MOVE_SPEED 0.1
+# define ROTATION_SPEED 0.1
 # define COLLISION_MARGIN 0.25
-# define IS_IN_RANGE(value) ((value) >= INT_MIN && (value) <= INT_MAX)
 
 typedef struct s_data		t_data;
 typedef struct s_textures	t_textures;

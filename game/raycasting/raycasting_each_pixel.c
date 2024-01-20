@@ -52,6 +52,11 @@ t_pos	get_ray_pos(t_ray *ray, t_game *game, t_pos step, char crossing)
 	return (ray_pos);
 }
 
+bool	is_in_range(double value)
+{
+	return (value >= INT_MIN && value <= INT_MAX);
+}
+
 t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step,
 								char crossing)
 {
@@ -64,7 +69,7 @@ t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step,
 	ray_pos = get_ray_pos(ray, game, step, crossing);
 	pixel->ray_len = INT_MAX;
 	pixel->distance = INT_MAX;
-	if (IS_IN_RANGE(ray_pos.x) && IS_IN_RANGE(ray_pos.y))
+	if (is_in_range(ray_pos.x) && is_in_range(ray_pos.y))
 	{
 		pixel->ray_len = sqrt(pow(game->player->x - ray_pos.x, 2)
 				+ pow(game->player->y - ray_pos.y, 2));
