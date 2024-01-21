@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:26:55 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/19 16:54:59 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/21 15:55:57 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double	get_fractional_part(t_pos *hit_point)
 
 	x_fractional = modf(hit_point->x, &x_fractional);
 	y_fractional = modf(hit_point->y, &y_fractional);
-	if (y_fractional == (int)hit_point->y)
+	if (y_fractional == 0)
 		return (x_fractional);
 	else
 		return (y_fractional);

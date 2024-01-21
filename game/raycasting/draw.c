@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:12:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/21 15:43:01 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/21 16:00:43 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	calc_y_pixel(int w_start, int w_end, int y, int texture_height)
 
 	relative_y = (double)(y - w_start) / (w_end - w_start);
 	texture_y = (int)(relative_y * texture_height);
-	if (texture_y > texture_height)
-		texture_y = texture_height;
+	if (texture_y > texture_height - 1)
+		texture_y = texture_height - 1;
 	else if (texture_y < 0)
 		texture_y = 0;
 	return (texture_y);
