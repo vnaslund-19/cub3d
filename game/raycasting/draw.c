@@ -6,11 +6,25 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:12:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/19 17:19:02 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/21 15:43:01 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	calc_y_pixel(int w_start, int w_end, int y, int texture_height)
+{
+	double	relative_y;
+	int		texture_y;
+
+	relative_y = (double)(y - w_start) / (w_end - w_start);
+	texture_y = (int)(relative_y * texture_height);
+	if (texture_y > texture_height)
+		texture_y = texture_height;
+	else if (texture_y < 0)
+		texture_y = 0;
+	return (texture_y);
+}
 
 void	draw_column(t_game *game, int x, int w_start, int w_end)
 {
@@ -26,7 +40,7 @@ void	draw_column(t_game *game, int x, int w_start, int w_end)
 		else
 			mlx_put_pixel(game->image, x, y,
 				get_texture_pixel_color(game->pixel_info->texture,
-					(y - w_start) % (int)(game->pixel_info->texture->height),
+					calc_y_pixel(w_start, w_end, y, game->pixel_info->texture->height),
 					game->pixel_info->wall_hit
 					* game->pixel_info->texture->width));
 		y++;
