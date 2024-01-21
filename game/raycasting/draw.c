@@ -27,7 +27,8 @@ void	draw_column(t_game *game, int x, int w_start, int w_end)
 			mlx_put_pixel(game->image, x, y,
 				get_texture_pixel_color(game->pixel_info->texture,
 					(y - w_start) % (int)(game->pixel_info->texture->height),
-					game->pixel_info->wall_hit));
+					game->pixel_info->wall_hit
+					* game->pixel_info->texture->width));
 		y++;
 	}
 }
