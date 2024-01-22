@@ -6,7 +6,7 @@
 /*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:12:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/21 16:00:43 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:37:52 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	draw_column(t_game *game, int x, int w_start, int w_end)
 		else
 			mlx_put_pixel(game->image, x, y,
 				get_texture_pixel_color(game->pixel_info->texture,
-					calc_y_pixel(w_start, w_end, y, game->pixel_info->texture->height),
+					calc_y_pixel(w_start, w_end, y,
+						game->pixel_info->texture->height),
 					game->pixel_info->wall_hit
 					* game->pixel_info->texture->width));
 		y++;
