@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:05:23 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/19 15:35:30 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/22 13:22:34 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ void	load_textures(t_game *game)
 	game->textures = malloc(sizeof(t_textures));
 	if (!game->textures)
 		exit_handler("Malloc error", game);
+	game->textures->north = NULL;
+	game->textures->south = NULL;
+	game->textures->west = NULL;
+	game->textures->east = NULL;
 	game->textures->north = mlx_load_png(game->data->no_path);
 	if (!game->textures->north)
 		exit_handler("NO texture", game);

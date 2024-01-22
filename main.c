@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/19 13:37:03 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/22 13:20:04 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_data(t_game *game)
 	game->data->we_path = NULL;
 	game->data->ea_path = NULL;
 	game->textures = NULL;
+	game->player = NULL;
 }
 
 void	ft_leaks(void)

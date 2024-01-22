@@ -6,13 +6,13 @@
 #    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 16:46:17 by vnaslund          #+#    #+#              #
-#    Updated: 2024/01/19 14:00:45 by gkrusta          ###   ########.fr        #
+#    Updated: 2024/01/22 13:22:16 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3d
-CFLAGS  = -Wall -Wextra -Werror -g # -fsanitize=address
-#LDFLAGS = -fsanitize=address
+CFLAGS  = -Wall -Wextra -Werror -g
+
 LIBMLX  = ./MLX42
 LIBMLX_A = $(LIBMLX)/build/libmlx42.a
 LIBFT   = ./libft
@@ -23,10 +23,11 @@ LIBGL   = -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib"
 LIBS    = ${LIBGL} $(LIBFT_A) ${LIBMLX}/build/libmlx42.a
 
 SRCS    = main.c parsing/read_file.c parsing/playable.c parsing/file_check.c \
-          parsing/fill_map.c parsing/explore.c \
-          memory_handling/exit_handler.c  memory_handling/end_game.c debug.c \
-		  game/init_game.c game/hooks.c game/move.c game/rotate.c game/utils.c \
-		  game/draw.c game/raycast.c \
+          parsing/fill_map.c parsing/explore.c exit_handler.c \
+		  game/init_game.c game/hooks.c game/move.c game/rotate.c \
+		  game/raycasting/draw.c  game/raycasting/raycast.c \
+		  game/raycasting/angles.c game/raycasting/raycasting_utils.c \
+		  game/raycasting/raycasting_each_pixel.c \
 		  raycasting/raycasting_utils.c raycasting/angles.c raycasting/raycasting_each_pixel.c
 
 OBJ_DIR = obj/
