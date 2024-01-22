@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_each_pixel.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:56:50 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/19 16:54:24 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:41:02 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ t_pos	get_ray_pos(t_ray *ray, t_game *game, t_pos step, char crossing)
 		ray_pos.x += step.x;
 		ray_pos.y += step.y;
 	}
+	if (ray_pos.y < 1)
+		ray_pos.y = 1;
 	return (ray_pos);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:25:31 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/10 17:57:18 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:16:58 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,41 @@ void	ft_file_check(t_game *game, char **file, int i)
 		exit_handler("Found invalid line while parsing", game);
 }
 
+int	char_counter(char *str, char c)
+{
+	int	i;
+	int	counter;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+		{
+			//check if it is number form 0 to 255
+			counter++;
+		}
+		i++;
+	}
+	return (counter);
+}
+
+bool	color_check(t_data *data, char *line)
+{
+	int	count;
+
+	if (char_counter(line, ',') > 2)
+		return (0);
+	
+	while ()
+}
+
 int	find_floor_or_ceil(t_data *data, char **file, int i)
 {
 	char	**nums;
 
 	if (!ft_strncmp(file[i], "F ", 2))
 	{
+		
 		nums = ft_split(file[i] + 2, ',');
 		data->rfloor = ft_atoi(nums[0]);
 		data->gfloor = ft_atoi(nums[1]);

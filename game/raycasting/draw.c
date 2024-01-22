@@ -6,91 +6,72 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:12:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/22 13:18:46 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/22 17:43:24 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	draw_floor_and_ceiling(t_game *game)
+int	calc_y_pixel(int w_start, int w_end, int y, int texture_height)
 {
-	int	y;
-	int	x;
+	double	relative_y;
+	int		texture_y;
 
-	x = 0;
-	while (x < WIN_WIDTH)
-	{
-		y = 0;
-		while (y < WIN_HEIGHT / 2)
-		{
-			mlx_put_pixel(game->image, x, y, game->textures->ceiling_color);
-			y++;
-		}
-		while (y < WIN_HEIGHT)
-		{
-			mlx_put_pixel(game->image, x, y, game->textures->floor_color);
-			y++;
-		}
-		x++;
-	}
+	relative_y = (double)(y - w_start) / (w_end - w_start);
+	texture_y = (int)(relative_y * texture_height);
+	if (texture_y > texture_height - 1)
+		texture_y = texture_height - 1;
+	else if (texture_y < 0)
+		texture_y = 0;
+	return (texture_y);
 }
 
-// test function
-void	draw_texture(t_game	*game, mlx_texture_t *texture)
-{
-	u_int32_t	y;
-	u_int32_t	x;
-
-	x = 0;
-	while (x < texture->width * 12)
-	{
-		y = 0;
-		while (y < texture->height * 12)
-		{
-			mlx_put_pixel(game->image, x, y,
-				get_texture_pixel_color(texture, y % 64, x % 64));
-			y++;
-		}
-		x++;
-	}
-}
-/*
 void	draw_column(t_game *game, int x, int w_start, int w_end)
 {
 	int	y;
 
-	y = 0;
-	while (y <= WIN_HEIGHT)
+	y = 1;
+	while (y < WIN_HEIGHT)
 	{
 		if (y < w_start)
-			mlx_put_pixel(game->image, x, y, game->textures->floor_color);
+			mlx_put_pixel(game->image, x, y, game->textures->ceiling_color);
 		else if (y > w_end)
 			mlx_put_pixel(game->image, x, y, game->textures->floor_color);
 		else
 			mlx_put_pixel(game->image, x, y,
-				get_texture_pixel_color(ray->texture_hit, // Part of some struct
-					(y - w_start) % 64, ray->tex_x_pos));
+				get_texture_pixel_color(game->pixel_info->texture,
+					calc_y_pixel(w_start, w_end, y,
+						game->pixel_info->texture->height),
+					game->pixel_info->wall_hit
+					* game->pixel_info->texture->width));
 		y++;
 	}
 }
-// Information needed:
-// ray length
-// What texture was hit
-// the x pos in which the texture was hit which is:
-// (floating-point part of x coordinate * texture_width)
+
 void	calc_wall_and_draw(t_game *game, int x)
 {
 	int	w_height;
 	int	w_start;
 	int	w_end;
 
-	w_height = WIN_HEIGHT / ray->length; // part of some struct
+	w_height = WIN_HEIGHT / game->pixel_info->distance;
 	w_start = (WIN_HEIGHT / 2) - (w_height / 2);
-	if (w_start < 0)
-		w_start = 0;
 	w_end = (WIN_HEIGHT / 2) + (w_height / 2);
-	if (w_end > WIN_HEIGHT)
-		w_end = WIN_HEIGHT;
 	draw_column(game, x, w_start, w_end);
 }
-*/
+
+int	get_rgba(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+// texture->pixels is a pointer to the start of the pixel data of the texture.
+// It is a linear buffer that contains rgba values in order for every pixel
+int	get_texture_pixel_color(mlx_texture_t *texture, int y, int x)
+{
+	uint8_t	*pixel;
+
+	pixel = texture->pixels + (((y * texture->width) + x)
+			* texture->bytes_per_pixel);
+	return (get_rgba(pixel[0], pixel[1], pixel[2], pixel[3]));
+}

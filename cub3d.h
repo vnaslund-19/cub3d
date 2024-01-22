@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/22 13:18:22 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/22 17:41:18 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ typedef struct s_game
 	mlx_image_t	*image;
 	t_textures	*textures;
 	t_data		*data;
-	t_ray		*ray;
-	t_column	*pixel_info;
 	t_ray		*ray;
 	t_column	*pixel_info;
 }				t_game;
