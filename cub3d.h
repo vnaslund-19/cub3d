@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/19 17:25:20 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:52:44 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 # define MOVE_SPEED 0.1
 # define ROTATION_SPEED 0.1
-# define COLLISION_MARGIN 0.25
+# define COLLISION_MARGIN 0.35
 
 typedef struct s_data		t_data;
 typedef struct s_textures	t_textures;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:12:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/22 12:37:52 by vnaslund         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:11:52 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,7 @@ void	calc_wall_and_draw(t_game *game, int x)
 
 	w_height = WIN_HEIGHT / game->pixel_info->distance;
 	w_start = (WIN_HEIGHT / 2) - (w_height / 2);
-	if (w_start < 0)
-		w_start = 0;
 	w_end = (WIN_HEIGHT / 2) + (w_height / 2);
-	if (w_end > WIN_HEIGHT)
-		w_end = WIN_HEIGHT;
 	draw_column(game, x, w_start, w_end);
 }
 
