@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
+/*   By: vnaslund <vnaslund@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/22 12:52:44 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/23 12:43:24 by vnaslund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 # define MOVE_SPEED 0.1
 # define ROTATION_SPEED 0.1
-# define COLLISION_MARGIN 0.35
+# define COLLISION_MARGIN 0.1
 
 typedef struct s_data		t_data;
 typedef struct s_textures	t_textures;
@@ -178,8 +178,6 @@ t_column		*init_pixel_column(t_ray *ray, t_game *game, t_pos step,
 
 // ray casting utils
 double			get_fractional_part(t_pos *hit_point);
-mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point,
-					t_ray *ray);
 mlx_texture_t	*get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray);
 double			get_absoulte(double ray_angle, double view_angle);
 bool			wall_check(t_data *data, t_ray *ray, t_pos step, char crossing);
