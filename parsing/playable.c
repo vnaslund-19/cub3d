@@ -6,11 +6,49 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:46:38 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/22 18:10:17 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/23 17:31:16 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+bool	valid_color(char **color, char c)
+{
+	int	i;
+	int	nb;
+
+	i = 0;
+	nb = 0;
+	while (**color)
+	{
+		if (!ft_isdigit(**color))
+			return (false);
+		nb = nb * 10 + (**color - '0');
+		(*color)++;
+		if (**color == c)
+		{
+			if (nb < 0 || nb > 255)
+				return (false);
+			else
+				return (true);
+		}
+	}
+	return (false);
+}
+
+bool	color_check(char *line)
+{
+	if (!valid_color(&line, ','))
+		return (false);
+	line++;
+	if (!valid_color(&line, ','))
+		return (false);
+	line++;
+	if (!valid_color(&line, '\n'))
+		return (false);
+	else
+		return (true);
+}
 
 void	ft_playable_check(t_game *game, char **map)
 {
@@ -24,7 +62,6 @@ void	ft_playable_check(t_game *game, char **map)
 	explore(game, game->data->p_position[0], game->data->p_position[1],
 		visited);
 	ft_free_array((void **)visited);
-	revise_data(game);
 }
 
 void	player_config_check(t_game *game, char **map)
@@ -53,18 +90,3 @@ void	player_config_check(t_game *game, char **map)
 	}
 }
 
-void	revise_data(t_game *game)
-{
-	if (game->data->rfloor > 255 || game->data->rfloor < 0)
-		exit_handler("Floor color error", game);
-	else if (game->data->gfloor > 255 || game->data->gfloor < 0)
-		exit_handler("Floor color error", game);
-	else if (game->data->bfloor > 255 || game->data->bfloor < 0)
-		exit_handler("Floor color error", game);
-	else if (game->data->rceil > 255 || game->data->rceil < 0)
-		exit_handler("Ceiling color error", game);
-	else if (game->data->gceil > 255 || game->data->gceil < 0)
-		exit_handler("Ceiling color error", game);
-	else if (game->data->bceil > 255 || game->data->bceil < 0)
-		exit_handler("Ceiling color error", game);
-}

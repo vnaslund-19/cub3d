@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:39 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/22 17:41:18 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/23 17:31:41 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <math.h>
 # include <limits.h>
 
-
 # define EMPTY '0'
 # define WALL '1'
 
@@ -29,20 +28,15 @@
 # define MIN_WIDTH 500
 # define MIN_HEIGHT 500
 
-# define FOV (M_PI / 2)
 # define MOVE_SPEED 0.1
 # define ROTATION_SPEED 0.1
-# define COLLISION_MARGIN 0.35
-# define IS_IN_RANGE(value) ((value) >= INT_MIN && (value) <= INT_MAX)
+# define COLLISION_MARGIN 0.1
 
 typedef struct s_data		t_data;
 typedef struct s_textures	t_textures;
 typedef struct s_pos		t_pos;
 typedef struct s_ray		t_ray;
-typedef struct s_pos		t_pos;
-typedef struct s_ray		t_ray;
 typedef struct s_player		t_player;
-typedef struct s_column		t_column;
 typedef struct s_column		t_column;
 
 typedef struct s_game
@@ -136,10 +130,12 @@ int				find_no_or_so(t_game *game, char **file, int i);
 int				find_we_or_ea(t_game *game, char **file, int i);
 int				is_first_line_of_map(char *str);
 
-void			ft_playable_check(t_game *game, char **map);
-void			revise_data(t_game *game);
+// Check that the color parametrs are correct and in range
+bool			valid_color(char **color, char c);
+bool			color_check(char *line);
 
-// Check that there is only one player character and no invalid characters
+// Check that there is only 1 player character and no invalid characters
+void			ft_playable_check(t_game *game, char **map);
 void			player_config_check(t_game *game, char **map);
 
 // Fill map with spaces to make it a rectangle to prepare for DFS algo
@@ -173,7 +169,7 @@ void			rotate(t_game *game, int angle);
 void			raycast(t_game *game);
 void			init_player(t_game *game);
 
-//raycasting each column
+// Raycasting each column
 t_pos			get_first_step(t_player *player, t_ray *ray, double angle,
 					char crossing);
 t_pos			get_ray_pos(t_ray *ray, t_game *game, t_pos step,
@@ -184,8 +180,6 @@ t_column		*init_pixel_column(t_ray *ray, t_game *game, t_pos step,
 
 // ray casting utils
 double			get_fractional_part(t_pos *hit_point);
-mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point,
-					t_ray *ray);
 mlx_texture_t	*get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray);
 double			get_absoulte(double ray_angle, double view_angle);
 bool			wall_check(t_data *data, t_ray *ray, t_pos step, char crossing);
@@ -199,23 +193,5 @@ void			determine_quadrant(t_ray *ray);
 void			calc_wall_and_draw(t_game *game, int x);
 int				get_texture_pixel_color(mlx_texture_t *texture, int y, int x);
 int				get_rgba(int r, int g, int b, int a);
-
-//raycasting each column
-t_pos		get_first_step(t_player *player, t_ray *ray, double angle, char crossing);
-t_pos		get_ray_pos(t_ray *ray, t_game *game, t_pos step, char crossing);
-t_column	*ray_caster(t_game *game, int i);
-t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing);
-
-// ray casting utils
-double			get_fractional_part(t_pos *hit_point);
-mlx_texture_t	*get_rays_texture_extension(t_game *game, t_pos *hit_point, t_ray *ray);
-mlx_texture_t	*get_rays_texture(t_game *game, t_pos *hit_point, t_ray *ray);
-double			get_absoulte(double ray_angle, double view_angle);
-bool			wall_check(t_data *data, t_ray *ray, t_pos step, char crossing);
-
-// getting rays angle and its quadrant
-void		init_ray(t_ray *ray, t_player *player, int x);
-double		get_ray_angle(double angle, double x);
-void		determine_quadrant(t_ray *ray);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:25:31 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/22 18:16:58 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/23 17:26:34 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,56 +33,33 @@ void	ft_file_check(t_game *game, char **file, int i)
 		exit_handler("Found invalid line while parsing", game);
 }
 
-int	char_counter(char *str, char c)
-{
-	int	i;
-	int	counter;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-		{
-			//check if it is number form 0 to 255
-			counter++;
-		}
-		i++;
-	}
-	return (counter);
-}
-
-bool	color_check(t_data *data, char *line)
-{
-	int	count;
-
-	if (char_counter(line, ',') > 2)
-		return (0);
-	
-	while ()
-}
-
 int	find_floor_or_ceil(t_data *data, char **file, int i)
 {
 	char	**nums;
 
 	if (!ft_strncmp(file[i], "F ", 2))
 	{
-		
-		nums = ft_split(file[i] + 2, ',');
-		data->rfloor = ft_atoi(nums[0]);
-		data->gfloor = ft_atoi(nums[1]);
-		data->bfloor = ft_atoi(nums[2]);
-		ft_free_array((void **)nums);
-		return (1);
+		if (color_check(file[i] + 2) == true)
+		{
+			nums = ft_split(file[i] + 2, ',');
+			data->rfloor = ft_atoi(nums[0]);
+			data->gfloor = ft_atoi(nums[1]);
+			data->bfloor = ft_atoi(nums[2]);
+			ft_free_array((void **)nums);
+			return (1);
+		}
 	}
 	else if (!ft_strncmp(file[i], "C ", 2))
 	{
-		nums = ft_split(file[i] + 2, ',');
-		data->rceil = ft_atoi(nums[0]);
-		data->gceil = ft_atoi(nums[1]);
-		data->bceil = ft_atoi(nums[2]);
-		ft_free_array((void **)nums);
-		return (1);
+		if (color_check(file[i] + 2) == true)
+		{
+			nums = ft_split(file[i] + 2, ',');
+			data->rceil = ft_atoi(nums[0]);
+			data->gceil = ft_atoi(nums[1]);
+			data->bceil = ft_atoi(nums[2]);
+			ft_free_array((void **)nums);
+			return (1);
+		}
 	}
 	return (0);
 }
