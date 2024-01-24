@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:45:14 by vnaslund          #+#    #+#             */
-/*   Updated: 2024/01/23 19:49:44 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/24 16:19:02 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ void	init_data(t_game *game)
 	game->player = NULL;
 }
 
-void	ft_leaks(void)
-{
-	system("leaks -q cub3d");
-}
-
 bool	file_valid(char *name)
 {
 	int	len;
@@ -51,7 +46,6 @@ int	main(int argc, char **argv)
 {
 	t_game	*game;
 
-	atexit(ft_leaks);
 	if (argc != 2)
 	{
 		printf("Exactly 1 map should be passed as argument");

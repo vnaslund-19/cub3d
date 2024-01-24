@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:56:50 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/19 13:57:44 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/24 16:21:39 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ t_pos	get_first_step(t_player *player, t_ray *ray, double angle, char crossing)
 	}
 	first_step.x = player->x + len * cos(angle) * ray->sign.x;
 	first_step.y = player->y + len * sin(angle) * ray->sign.y;
-	printf("AFTER FIRST STEP wall hit:\nx pos %f and y pos %f (in quadrant %d)\n", first_step.x, first_step.y, ray->quadrant);
-	printf("len of it is %f\n", len);
 	return (first_step);
 }
 
@@ -50,7 +48,6 @@ t_pos	get_ray_pos(t_ray *ray, t_game *game, t_pos step, char crossing)
 		ray_pos.x += step.x;
 		ray_pos.y += step.y;
 	}
-	printf("HITED WALL: x pos: %f and y pos: %f \n\n", ray_pos.x, ray_pos.y);
 	return (ray_pos);
 }
 

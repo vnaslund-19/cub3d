@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:46:29 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/19 15:31:19 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/24 16:21:27 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,17 @@
 void	init_ray(t_ray *ray, t_player *player, int x)
 {
 	ray->ray_angle = get_ray_angle(player->view_angle, x);
-	//ray->ray_angle = player->view_angle;
 	ray->sign.x = 1;
 	ray->sign.y = 1;
 	if (cos(ray->ray_angle) < 0)
-	{
-		printf("1 here\n");
 		ray->sign.x *= -1;
-	}
 	if (sin(ray->ray_angle) > 0)
-	{
-		printf("2 here\n");
 		ray->sign.y *= -1;
-	}
 	determine_quadrant(ray);
 	ray->vertical.x = ray->sign.x;
 	ray->vertical.y = -(tan(ray->ray_angle) * ray->vertical.x);
 	ray->horizontal.y = ray->sign.y;
 	ray->horizontal.x = -(ray->horizontal.y / tan(ray->ray_angle));
-	printf("\nsteps in vertical dir:      y:%f   x:%f\n", ray->vertical.y, ray->vertical.x);
-	printf("steps in horizontal dir:   y:%f    x:%f\n", ray->horizontal.y, ray->horizontal.x);
 }
 
 double	get_ray_angle(double angle, double x)
@@ -42,11 +33,11 @@ double	get_ray_angle(double angle, double x)
 	double	ray_angle;
 	double	delta;
 
-	delta = (WIN_WIDTH / 2- x);
+	delta = (WIN_WIDTH / 2 - x);
 	ray_angle = delta / (sqrt(pow(delta, 2) + pow(WIN_WIDTH / 2, 2)));
 	if (x < WIN_WIDTH / 2)
 	{
-		delta = (WIN_WIDTH / 2- x);
+		delta = (WIN_WIDTH / 2 - x);
 		ray_angle = asin(delta / (sqrt(pow(delta, 2) + pow(WIN_WIDTH / 2, 2))));
 		return (angle + ray_angle);
 	}

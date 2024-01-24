@@ -6,11 +6,13 @@
 #    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 16:46:17 by vnaslund          #+#    #+#              #
-#    Updated: 2024/01/22 17:43:48 by gkrusta          ###   ########.fr        #
+#    Updated: 2024/01/24 16:14:22 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3d
+BONUS	= cub3d_bonus
+
 CFLAGS  = -Wall -Wextra -Werror -g
 
 LIBMLX  = ./MLX42
@@ -29,10 +31,19 @@ SRCS    = main.c parsing/read_file.c parsing/playable.c parsing/file_check.c \
 		  game/raycasting/angles.c game/raycasting/raycasting_utils.c \
 		  game/raycasting/raycasting_each_pixel.c \
 
+BSRCS	= main.c parsing/read_file.c parsing/playable.c parsing/file_check.c \
+          parsing/fill_map.c parsing/explore.c exit_handler.c \
+		  game/init_game.c game/hooks.c game/move_bonus.c game/rotate.c \
+		  game/raycasting/draw.c  game/raycasting/raycast.c \
+		  game/raycasting/angles.c game/raycasting/raycasting_utils.c \
+		  game/raycasting/raycasting_each_pixel.c \
+
 OBJ_DIR = obj/
 OBJS    = $(SRCS:%.c=$(OBJ_DIR)%.o)
+BOBJS	= $(BSRCS:%.c=$(OBJ_DIR)%.o)
 
 all: libmlx libft $(NAME)
+bonus: libmlx libft $(BONUS)
 
 libft: $(LIBFT_A)
 
@@ -59,6 +70,11 @@ $(NAME): $(OBJS)
 	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 	@echo "$@ compilation complete."
 
+$(BONUS): $(BOBJS)
+	@echo "Linking $@..."
+	@$(CC) $(BOBJS) $(LIBS) $(HEADERS) -o $(BONUS)
+	@echo "$@ compilation complete."
+
 clean:
 	@echo "Cleaning up object files..."
 	@rm -rf $(OBJ_DIR)
@@ -68,10 +84,10 @@ clean:
 
 fclean: clean
 	@echo "Cleaning up executable and libraries..."
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(BONUS)
 	@$(MAKE) -s -C $(LIBFT) fclean
 	@echo "Cleanup complete."
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
