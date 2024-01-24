@@ -6,13 +6,14 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:56:50 by gkrusta           #+#    #+#             */
-/*   Updated: 2024/01/24 16:21:39 by gkrusta          ###   ########.fr       */
+/*   Updated: 2024/01/24 16:31:00 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_pos	get_first_step(t_player *player, t_ray *ray, double angle, char crossing)
+t_pos	get_first_step(t_player *player, t_ray *ray, double angle,
+						char crossing)
 {
 	t_pos	first_step;
 	double	len;
@@ -51,7 +52,8 @@ t_pos	get_ray_pos(t_ray *ray, t_game *game, t_pos step, char crossing)
 	return (ray_pos);
 }
 
-t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing)
+t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step,
+								char crossing)
 {
 	t_pos		ray_pos;
 	t_column	*pixel;
@@ -65,7 +67,7 @@ t_column	*init_pixel_column(t_ray *ray, t_game *game, t_pos step, char crossing)
 	if (IS_IN_RANGE(ray_pos.x) && IS_IN_RANGE(ray_pos.y))
 	{
 		pixel->ray_len = sqrt(pow(game->player->x - ray_pos.x, 2)
-			+ pow(game->player->y - ray_pos.y, 2));
+				+ pow(game->player->y - ray_pos.y, 2));
 		delta = get_absoulte(ray->ray_angle, game->player->view_angle);
 		pixel->distance = pixel->ray_len * cos(delta);
 		pixel->texture = get_rays_texture(game, &ray_pos, ray);
@@ -79,7 +81,7 @@ t_column	*ray_caster(t_game *game, int x)
 	t_column	*x_col;
 	t_column	*y_col;
 	t_ray		ray;
-	
+
 	x_col = NULL;
 	y_col = NULL;
 	init_ray(&ray, game->player, x);
